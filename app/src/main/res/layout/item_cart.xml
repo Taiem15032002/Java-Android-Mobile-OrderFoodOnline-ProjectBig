@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="fooditem"
+            type="com.example.orderfoodonline.models.Ramen" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginStart="@dimen/_22sdp"
+        android:layout_width="@dimen/_270sdp"
+        android:layout_height="@dimen/_120sdp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_category_food"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="@dimen/_10sdp">
+            <TextView
+                android:id="@+id/tv_id_food_cart"
+                android:layout_width="@dimen/_115sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/_140sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/tv_name_food"
+                android:layout_width="@dimen/_115sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:maxLength="10"
+                android:text="Mi Udon"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/_140sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_id_food_cart" />
+
+            <TextView
+                android:id="@+id/tv_price_food"
+                android:layout_width="@dimen/_115sdp"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/_10sdp"
+                android:layout_marginTop="10dp"
+                android:text="65.000"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/_140sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_name_food" />
+            <LinearLayout
+                android:id="@+id/lladdorminus"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_140sdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_price_food">
+                <ImageView
+                    android:id="@+id/btnminus"
+                    android:src="@drawable/ic_minus_24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/tv_many"
+                    android:text="1"
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:id="@+id/btnadd"
+                    android:src="@drawable/ic_add_24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/tv_total_price"
+                android:layout_width="@dimen/_115sdp"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/_10sdp"
+                android:layout_marginTop="10dp"
+                android:text="Tổng tiền: 65.000 VND"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/_140sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/lladdorminus" />
+            <ImageView
+                android:id="@+id/btnremove"
+                android:src="@drawable/ic_remove"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:id="@+id/image_cart"
+                android:layout_width="@dimen/_110sdp"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="25dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/miramen1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
