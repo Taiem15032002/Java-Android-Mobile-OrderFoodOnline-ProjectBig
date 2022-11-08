@@ -1,6 +1,8 @@
 package com.example.orderfoodonline.adapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,9 +70,24 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         holder.binding.btnremove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                removeCart(holder.getAdapterPosition());
-                notifyDataSetChanged();
-                listener.change();
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getRootView().getContext());
+                builder.setTitle("Thông báo");
+                builder.setMessage("Xóa sản phẩm khỏi giỏ hàng?");
+                builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        removeCart(holder.getAdapterPosition());
+                        notifyDataSetChanged();
+                        listener.change();
+                    }
+                });
+                builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.show();
             }
         });
     }
@@ -84,10 +101,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         //Lay vi tri tu click giam soluong cho cart
         if (Utils.cartList.get(adapterPosition).getAmount() == 1){
             //neu amount = 1 thi bo phan tu adapter tai vi tri do ra ngoai
-            Utils.cartList.remove(adapterPosition);
+                    Utils.cartList.remove(adapterPosition);
         }else{
             Utils.cartList.get(adapterPosition).setAmount(Utils.cartList.get(adapterPosition).getAmount() - 1);
         }
+
         //ghi lai du lieu vao paper
         Paper.book().write("cart", Utils.cartList);
     }

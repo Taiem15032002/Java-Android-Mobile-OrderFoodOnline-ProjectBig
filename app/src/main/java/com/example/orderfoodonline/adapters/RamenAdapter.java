@@ -60,7 +60,6 @@ public class RamenAdapter extends RecyclerView.Adapter<RamenAdapter.MyViewHolder
                     detailListener.onMenuClick(ramen);
                 }
             });
-
         }
     }
 }
