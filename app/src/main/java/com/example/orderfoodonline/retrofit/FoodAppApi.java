@@ -5,6 +5,7 @@ import com.example.orderfoodonline.models.FoodDetailModels;
 import com.example.orderfoodonline.models.RamenModels;
 import com.example.orderfoodonline.models.UserModels;
 
+import io.reactivex.rxjava3.core.Observable;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -29,10 +30,17 @@ public interface FoodAppApi {
     //Api user
     @POST("user.php")
     @FormUrlEncoded
-    Call<UserModels> dangKi(
+    Observable<UserModels> dangKi(
             @Field("email") String email,
             @Field("pass") String pass,
             @Field("username") String username
+    );
+    //Api dang nhap
+    @POST("dangnhap.php")
+    @FormUrlEncoded
+    Observable<UserModels> dangNhap(
+            @Field("username") String username,
+            @Field("pass") String pass
     );
     //api detail food
     @POST("fooddetail.php")
@@ -40,4 +48,5 @@ public interface FoodAppApi {
     Call<FoodDetailModels> getFooddetail(
             @Field("id") int id
     );
+
 }

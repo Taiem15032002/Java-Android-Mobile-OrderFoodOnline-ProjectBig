@@ -1,7 +1,6 @@
 package com.example.orderfoodonline.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,21 +10,27 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.airbnb.lottie.utils.Utils;
-import com.bumptech.glide.util.Util;
 import com.example.orderfoodonline.R;
+import com.example.orderfoodonline.Utils.Utils;
 import com.example.orderfoodonline.retrofit.FoodAppApi;
 import com.example.orderfoodonline.retrofit.Retrofitinstance;
-import com.example.orderfoodonline.viewModels.RegisterViewModel;
+
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RegisterActivity extends AppCompatActivity {
     EditText email;
     EditText password;
     EditText repass;
     EditText username;
-    TextView btnRegister,haveaaccount, btnBack;
-    RegisterViewModel registerViewModel;
-//    CompositeDisposable
+    TextView btnRegister, haveaaccount, btnBack;
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
+    FoodAppApi api;
+
+    //    RegisterViewModel registerViewModel;
+    //    CompositeDisposable
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,40 +54,65 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-    private void dangKi(){
+
+    private void dangKi() {
 //        registerViewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
         String stremail = email.getText().toString().trim();
         String strpass = password.getText().toString().trim();
         String strrepass = repass.getText().toString().trim();
         String strusername = username.getText().toString().trim();
-        if (TextUtils.isEmpty(stremail)){
+        if (TextUtils.isEmpty(stremail)) {
             Toast.makeText(this, "Vui lòng nhập email", Toast.LENGTH_SHORT).show();
-        }else if(TextUtils.isEmpty(strpass)){
+        } else if (TextUtils.isEmpty(strpass)) {
             Toast.makeText(this, "Vui lòng nhập mật khẩu", Toast.LENGTH_SHORT).show();
-        }else if(TextUtils.isEmpty(strrepass)){
+        } else if (TextUtils.isEmpty(strrepass)) {
             Toast.makeText(this, "Vui lòng nhập lại mật khẩu", Toast.LENGTH_SHORT).show();
-        }else if(TextUtils.isEmpty(strusername)){
+        } else if (TextUtils.isEmpty(strusername)) {
             Toast.makeText(this, "Vui lòng nhập tên người dùng", Toast.LENGTH_SHORT).show();
-        } else{
-            if (strpass.equals(strrepass)){
-                registerViewModel.userModelsMutableLiveData(stremail, strpass, strusername).observe(this, userModels -> {
-                    if (userModels.isSuccess()){
-                        Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }else{
+        } else {
+            if (strpass.equals(strrepass)) {
+                compositeDisposable.add(api.dangKi(stremail, strpass, strusername)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                                userModels -> {
+                                    if (userModels.isSuccess()) {
+                                        //Sau khi nguoi dung dang ky thanh cong
+                                        //Day vao Utils email pass
+                                        Utils.user_current.setUsername(strusername);
+                                        Utils.user_current.setPass(strpass);
+                                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                        startActivity(intent);
+                                        Toast.makeText(getApplicationContext(), "Đăng ký thành công !", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), userModels.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                },
+                                throwable -> {
+                                    Toast.makeText(getApplicationContext(), "Hỏng chương trình", Toast.LENGTH_SHORT).show();
+                                }
+                        ));
+            } else {
                 Toast.makeText(this, "Mật khẩu phải trùng lập", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
     private void initView() {
+        api = Retrofitinstance.getRetrofit().create(FoodAppApi.class);
         email = findViewById(R.id.edtEmail_register);
         password = findViewById(R.id.edtPassword_Register);
         repass = findViewById(R.id.edtRePassword_Register);
-        username = findViewById(R.id.edtUsername);
+        username = findViewById(R.id.edtUsername_register);
         btnRegister = findViewById(R.id.btnRegister);
         haveaaccount = findViewById(R.id.tvBandacotaikhoan);
         btnBack = findViewById(R.id.back_container);
+    }
+
+    @Override
+    protected void onDestroy() {
+        compositeDisposable.clear();
+        super.onDestroy();
     }
 }
