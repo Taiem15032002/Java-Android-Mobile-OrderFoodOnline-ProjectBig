@@ -25,6 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText password;
     EditText repass;
     EditText username;
+    EditText mobile;
     TextView btnRegister, haveaaccount, btnBack;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     FoodAppApi api;
@@ -61,6 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
         String strpass = password.getText().toString().trim();
         String strrepass = repass.getText().toString().trim();
         String strusername = username.getText().toString().trim();
+        String strmobile = mobile.getText().toString().trim();
         if (TextUtils.isEmpty(stremail)) {
             Toast.makeText(this, "Vui lòng nhập email", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(strpass)) {
@@ -69,9 +71,11 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Vui lòng nhập lại mật khẩu", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(strusername)) {
             Toast.makeText(this, "Vui lòng nhập tên người dùng", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(strmobile)) {
+            Toast.makeText(this, "Vui lòng nhập SDT người dùng", Toast.LENGTH_SHORT).show();
         } else {
             if (strpass.equals(strrepass)) {
-                compositeDisposable.add(api.dangKi(stremail, strpass, strusername)
+                compositeDisposable.add(api.dangKi(stremail, strpass, strusername, strmobile)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
@@ -105,6 +109,7 @@ public class RegisterActivity extends AppCompatActivity {
         password = findViewById(R.id.edtPassword_Register);
         repass = findViewById(R.id.edtRePassword_Register);
         username = findViewById(R.id.edtUsername_register);
+        mobile = findViewById(R.id.edtMobile_register);
         btnRegister = findViewById(R.id.btnRegister);
         haveaaccount = findViewById(R.id.tvBandacotaikhoan);
         btnBack = findViewById(R.id.back_container);

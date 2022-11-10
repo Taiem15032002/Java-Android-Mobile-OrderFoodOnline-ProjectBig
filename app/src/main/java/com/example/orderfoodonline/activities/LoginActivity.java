@@ -111,11 +111,11 @@ public class LoginActivity extends AppCompatActivity {
         register = findViewById(R.id.tvBanchuacotaikhoan);
         forgotpass = findViewById(R.id.tvQuenmatkhau);
         btnLogin = findViewById(R.id.btnLogin);
-        //doc du lieu tu paper
-        if (Paper.book().read("username") != null && Paper.book().read("pass") != null) {
-            edtusername.setText(Paper.book().read("username"));
-            edtpassword.setText(Paper.book().read("pass"));
-        }
+//        //doc du lieu tu paper
+//        if (Paper.book().read("username") != null && Paper.book().read("pass") != null) {
+//            edtusername.setText(Paper.book().read("username"));
+//            edtpassword.setText(Paper.book().read("pass"));
+//        }
     }
 
     @Override

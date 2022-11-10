@@ -33,7 +33,8 @@ public interface FoodAppApi {
     Observable<UserModels> dangKi(
             @Field("email") String email,
             @Field("pass") String pass,
-            @Field("username") String username
+            @Field("username") String username,
+            @Field("mobile") String mobile
     );
     //Api dang nhap
     @POST("dangnhap.php")

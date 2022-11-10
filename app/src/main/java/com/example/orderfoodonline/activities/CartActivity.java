@@ -1,12 +1,15 @@
 package com.example.orderfoodonline.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.orderfoodonline.R;
 import com.example.orderfoodonline.Utils.Utils;
@@ -21,6 +24,7 @@ import io.paperdb.Paper;
 
 public class CartActivity extends AppCompatActivity {
     ActivityCartBinding binding;
+    AppCompatButton buttonCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,20 @@ public class CartActivity extends AppCompatActivity {
             }
         });
         binding.rvCart.setAdapter(adapter);
+
+        //click payment
+        buttonCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (cartList.size() < 1){
+                    Toast.makeText(getApplicationContext(), "Hãy thêm món ăn vào giỏ hàng!", Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent(getApplicationContext(), PrePaymenActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
     }
 
     private void totalPrice() {
@@ -57,5 +75,6 @@ public class CartActivity extends AppCompatActivity {
         binding.rvCart.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         binding.rvCart.setLayoutManager(layoutManager);
+        buttonCart = findViewById(R.id.btn_checkout);
     }
 }
