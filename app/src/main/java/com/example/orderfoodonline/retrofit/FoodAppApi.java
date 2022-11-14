@@ -49,5 +49,16 @@ public interface FoodAppApi {
     Call<FoodDetailModels> getFooddetail(
             @Field("id") int id
     );
-
+    //api don hang
+    @POST("donhang.php")
+    @FormUrlEncoded
+    Call<FoodDetailModels> createOrder(
+            @Field("email") String email,
+            @Field("mobile") String mobile,
+            @Field("tongtien") String tongtien,
+            @Field("iduser") int id,
+            @Field("diachi") String diachi,
+            @Field("soluong") int soluong,
+            @Field("chitiet") String chitiet
+    );
 }
