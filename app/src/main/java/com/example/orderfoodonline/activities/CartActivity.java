@@ -25,6 +25,7 @@ import io.paperdb.Paper;
 public class CartActivity extends AppCompatActivity {
     ActivityCartBinding binding;
     AppCompatButton buttonCart;
+    int price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class CartActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Hãy thêm món ăn vào giỏ hàng!", Toast.LENGTH_SHORT).show();
                 }else{
                     Intent intent = new Intent(getApplicationContext(), PrePaymenActivity.class);
+                    intent.putExtra("tongtien",price);
                     startActivity(intent);
                     finish();
                 }
@@ -64,7 +66,7 @@ public class CartActivity extends AppCompatActivity {
 
     private void totalPrice() {
         //Lay so luong tung san pham duoc luu vao listcart nhan voi don gia
-        int price = 0;
+        price = 0;
         for (int i = 0; i < Utils.cartList.size(); i++){
             price = price + Utils.cartList.get(i).getAmount() * Utils.cartList.get(i).getFoodDetail().getPrice();
         }
