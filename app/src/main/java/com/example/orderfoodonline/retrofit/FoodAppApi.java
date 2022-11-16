@@ -43,6 +43,14 @@ public interface FoodAppApi {
             @Field("username") String username,
             @Field("pass") String pass
     );
+    @POST("reset.php")
+    @FormUrlEncoded
+    Observable<UserModels> quenMatKhau(
+            @Field("email") String username,
+            @Field("password") String pass,
+            @Field("repassword") String repass
+
+    );
     //api detail food
     @POST("fooddetail.php")
     @FormUrlEncoded
