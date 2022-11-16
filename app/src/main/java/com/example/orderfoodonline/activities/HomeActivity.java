@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ import com.example.orderfoodonline.viewModels.HomeViewModel;
 public class HomeActivity extends AppCompatActivity implements CategoryListener,DetailListener{
     HomeViewModel homeViewModel;
     ActivityHomeBinding binding;
+    EditText editSearch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,10 @@ public class HomeActivity extends AppCompatActivity implements CategoryListener,
     }
 
     private void initView() {
+        //ánh xạ
+        editSearch = findViewById(R.id.editSearch);
+
+
         //Set Recycle View
         binding.rvCategory.setHasFixedSize(true);
         //set RV theo chieu ngang
@@ -147,7 +153,14 @@ public class HomeActivity extends AppCompatActivity implements CategoryListener,
                 binding.rvSomen.setAdapter(adapter);
             }
         });
-
+        //set click Search
+            editSearch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),SearchActivity.class);
+                startActivity(intent);
+                }
+            });
 
     }
 
