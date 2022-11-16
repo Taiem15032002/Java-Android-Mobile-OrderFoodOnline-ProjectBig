@@ -79,32 +79,73 @@
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/tv_sdt"
                     app:layout_constraintStart_toStartOf="parent"/>
+                <TextView
+                    android:id="@+id/tvTTT"
+                    app:layout_constraintTop_toBottomOf="@id/tv_tongtienthanhtoan"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thanh toán trước"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_20sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"/>
+                <RadioGroup
+                    android:id="@+id/grrd"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/tvTTT"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RadioButton
+                        android:id="@+id/rd50"
+                        app:layout_constraintTop_toBottomOf="@id/grrd"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thanh toán trước 50%"/>
+                    <RadioButton
+                        android:id="@+id/rd100"
+                        app:layout_constraintTop_toBottomOf="@id/grrd"
+                        app:layout_constraintStart_toEndOf="@+id/rd50"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thanh toán toàn bộ"/>
+                </RadioGroup>
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_halfpay"
+                    android:id="@+id/btn_momo"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:background="@drawable/btn_checkout"
                     android:layout_margin="@dimen/_10sdp"
                     android:gravity="center"
-                    android:text="THANH TOÁN TRƯớC 50%"
+                    android:text="THANH TOÁN BẰNg MOMO"
                     android:textColor="@color/main_color"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@id/tv_tongtienthanhtoan"
+                    app:layout_constraintTop_toBottomOf="@id/grrd"
                     app:layout_constraintStart_toStartOf="parent">
                 </androidx.appcompat.widget.AppCompatButton>
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_allpay"
+                    android:id="@+id/btn_zalopay"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:background="@drawable/btn_checkout"
                     android:layout_margin="@dimen/_10sdp"
                     android:gravity="center"
-                    android:text="THANH TOÁN TOÀN BỘ"
+                    android:text="THANH TOÁN BẰNG ZALOPAY"
                     android:textColor="@color/main_color"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@id/btn_halfpay"
+                    app:layout_constraintTop_toBottomOf="@id/btn_momo"
                     app:layout_constraintStart_toStartOf="parent">
                 </androidx.appcompat.widget.AppCompatButton>
             </androidx.constraintlayout.widget.ConstraintLayout>
