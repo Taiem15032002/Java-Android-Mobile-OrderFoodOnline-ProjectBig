@@ -46,6 +46,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         Cart cart = cartList.get(position);
         holder.binding.tvNameFood.setText(cart.getFoodDetail().getFood_name());
         Glide.with(context).load(cart.getFoodDetail().getFoodThumb()).into(holder.binding.imageCart);
+
         holder.binding.tvIdFoodCart.setText("Mã đơn hàng: "+cart.getFoodDetail().getId());
         holder.binding.tvPriceFood.setText("Giá: "+cart.getFoodDetail().getPrice() +"VND");
         holder.binding.btnadd.setOnClickListener(new View.OnClickListener() {

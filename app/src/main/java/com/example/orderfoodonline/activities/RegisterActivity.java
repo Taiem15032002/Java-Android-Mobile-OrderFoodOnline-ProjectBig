@@ -83,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     if (userModels.isSuccess()) {
                                         //Sau khi nguoi dung dang ky thanh cong
                                         //Day vao Utils email pass
-                                        Utils.user_current.setUsername(strusername);
+                                        Utils.user_current.setEmail(stremail);
                                         Utils.user_current.setPass(strpass);
                                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                                         startActivity(intent);

@@ -86,7 +86,7 @@
 <!--               Category-->
                 <TextView
                     android:id="@+id/tvCategory"
-                    android:text="popular dishes"
+                    android:text="Category"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/container1"
                     android:textSize="20dp"
@@ -136,135 +136,135 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 </androidx.recyclerview.widget.RecyclerView>
-<!--                Mi udon-->
-                <TextView
-                    android:id="@+id/tvMiudon"
-                    android:text="Mì udon"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rvMinhat"
-                    android:textSize="15dp"
-                    android:textColor="@color/black"
-                    android:layout_marginStart="30dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal|top"/>
+<!--&lt;!&ndash;                Mi udon&ndash;&gt;-->
 <!--                <TextView-->
-<!--                    android:id="@+id/tvMore1"-->
-<!--                    android:drawableEnd="@drawable/ic_baseline_chevron_right_24"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:layout_marginRight="20dp"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    android:id="@+id/tvMiudon"-->
+<!--                    android:text="Mì udon"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
 <!--                    app:layout_constraintTop_toBottomOf="@+id/rvMinhat"-->
 <!--                    android:textSize="15dp"-->
-<!--                    android:text="More"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"/>-->
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvMiudon"
-                    app:layout_constraintTop_toBottomOf="@+id/tvMiudon"
-                    app:layout_constraintStart_toStartOf="@+id/tvMiudon"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </androidx.recyclerview.widget.RecyclerView>
-<!--                Mi soba-->
-                <TextView
-                    android:id="@+id/tvSoba"
-                    android:text="Mì Soba"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rvMiudon"
-                    android:textSize="15dp"
-                    android:textColor="@color/black"
-                    android:layout_marginStart="30dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal|top"/>
-<!--                <TextView-->
-<!--                    android:id="@+id/tvMore2"-->
-<!--                    android:drawableEnd="@drawable/ic_baseline_chevron_right_24"-->
 <!--                    android:textColor="@color/black"-->
+<!--                    android:layout_marginStart="30dp"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center_horizontal|top"/>-->
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/tvMore1"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:drawableEnd="@drawable/ic_baseline_chevron_right_24"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textColor="@color/black"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginRight="20dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    app:layout_constraintTop_toBottomOf="@+id/rvMinhat"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="15dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="More"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"/>&ndash;&gt;-->
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/rvMiudon"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/tvMiudon"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/tvMiudon"-->
+<!--                    android:layout_marginLeft="20dp"-->
 <!--                    android:layout_marginRight="20dp"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content">-->
+<!--                </androidx.recyclerview.widget.RecyclerView>-->
+<!--&lt;!&ndash;                Mi soba&ndash;&gt;-->
+<!--                <TextView-->
+<!--                    android:id="@+id/tvSoba"-->
+<!--                    android:text="Mì Soba"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
 <!--                    app:layout_constraintTop_toBottomOf="@+id/rvMiudon"-->
 <!--                    android:textSize="15dp"-->
-<!--                    android:text="More"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"/>-->
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvSoba"
-                    app:layout_constraintTop_toBottomOf="@+id/tvSoba"
-                    app:layout_constraintStart_toStartOf="@+id/tvSoba"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </androidx.recyclerview.widget.RecyclerView>
-<!--                Mi shirataki-->
-                <TextView
-                    android:id="@+id/tvShirataki"
-                    android:text="Mì Shirataki"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rvSoba"
-                    android:textSize="15dp"
-                    android:textColor="@color/black"
-                    android:layout_marginStart="30dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal|top"/>
-<!--                <TextView-->
-<!--                    android:id="@+id/tvMore3"-->
-<!--                    android:drawableEnd="@drawable/ic_baseline_chevron_right_24"-->
 <!--                    android:textColor="@color/black"-->
+<!--                    android:layout_marginStart="30dp"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center_horizontal|top"/>-->
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/tvMore2"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:drawableEnd="@drawable/ic_baseline_chevron_right_24"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textColor="@color/black"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginRight="20dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    app:layout_constraintTop_toBottomOf="@+id/rvMiudon"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="15dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="More"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"/>&ndash;&gt;-->
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/rvSoba"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/tvSoba"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/tvSoba"-->
+<!--                    android:layout_marginLeft="20dp"-->
 <!--                    android:layout_marginRight="20dp"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content">-->
+<!--                </androidx.recyclerview.widget.RecyclerView>-->
+<!--&lt;!&ndash;                Mi shirataki&ndash;&gt;-->
+<!--                <TextView-->
+<!--                    android:id="@+id/tvShirataki"-->
+<!--                    android:text="Mì Shirataki"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
 <!--                    app:layout_constraintTop_toBottomOf="@+id/rvSoba"-->
 <!--                    android:textSize="15dp"-->
-<!--                    android:text="More"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"/>-->
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvShirataki"
-                    app:layout_constraintTop_toBottomOf="@+id/tvShirataki"
-                    app:layout_constraintStart_toStartOf="@+id/tvShirataki"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </androidx.recyclerview.widget.RecyclerView>
- <!--                Mi somen-->
-                <TextView
-                    android:id="@+id/tvSomen"
-                    android:text="Mì Somen"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rvShirataki"
-                    android:textSize="15dp"
-                    android:textColor="@color/black"
-                    android:layout_marginStart="30dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal|top"/>
-<!--                <TextView-->
-<!--                    android:id="@+id/tvMore4"-->
-<!--                    android:drawableEnd="@drawable/ic_baseline_chevron_right_24"-->
 <!--                    android:textColor="@color/black"-->
+<!--                    android:layout_marginStart="30dp"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center_horizontal|top"/>-->
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/tvMore3"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:drawableEnd="@drawable/ic_baseline_chevron_right_24"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textColor="@color/black"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginRight="20dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    app:layout_constraintTop_toBottomOf="@+id/rvSoba"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="15dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="More"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"/>&ndash;&gt;-->
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/rvShirataki"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/tvShirataki"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/tvShirataki"-->
+<!--                    android:layout_marginLeft="20dp"-->
 <!--                    android:layout_marginRight="20dp"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content">-->
+<!--                </androidx.recyclerview.widget.RecyclerView>-->
+<!-- &lt;!&ndash;                Mi somen&ndash;&gt;-->
+<!--                <TextView-->
+<!--                    android:id="@+id/tvSomen"-->
+<!--                    android:text="Mì Somen"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
 <!--                    app:layout_constraintTop_toBottomOf="@+id/rvShirataki"-->
 <!--                    android:textSize="15dp"-->
-<!--                    android:text="More"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:layout_marginStart="30dp"-->
 <!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"/>-->
-                <!--app:layout_constraintBottom_toTopOf="@+id/bottombar"-->
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvSomen"
-                    app:layout_constraintTop_toBottomOf="@+id/tvSomen"
-                    app:layout_constraintStart_toStartOf="@+id/tvSomen"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </androidx.recyclerview.widget.RecyclerView>
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center_horizontal|top"/>-->
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/tvMore4"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:drawableEnd="@drawable/ic_baseline_chevron_right_24"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textColor="@color/black"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginRight="20dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    app:layout_constraintTop_toBottomOf="@+id/rvShirataki"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="15dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="More"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"/>&ndash;&gt;-->
+<!--                &lt;!&ndash;app:layout_constraintBottom_toTopOf="@+id/bottombar"&ndash;&gt;-->
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/rvSomen"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/tvSomen"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/tvSomen"-->
+<!--                    android:layout_marginLeft="20dp"-->
+<!--                    android:layout_marginRight="20dp"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content">-->
+<!--                </androidx.recyclerview.widget.RecyclerView>-->
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 <!--        Bottombar-->

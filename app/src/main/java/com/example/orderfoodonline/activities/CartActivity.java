@@ -1,14 +1,17 @@
 package com.example.orderfoodonline.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.orderfoodonline.R;
@@ -25,6 +28,7 @@ import io.paperdb.Paper;
 public class CartActivity extends AppCompatActivity {
     ActivityCartBinding binding;
     AppCompatButton buttonCart;
+    TextView btnBack;
     int price;
 
     @Override
@@ -53,13 +57,29 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (cartList.size() < 1){
-                    Toast.makeText(getApplicationContext(), "Hãy thêm món ăn vào giỏ hàng!", Toast.LENGTH_SHORT).show();
+                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(v.getRootView().getContext());
+                    builder.setTitle("Thông báo");
+                    builder.setMessage("Hãy thêm món ăn vào giỏ hàng!");
+                    builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.show();
                 }else{
                     Intent intent = new Intent(getApplicationContext(), PrePaymenActivity.class);
                     intent.putExtra("tongtien",price);
                     startActivity(intent);
                     finish();
                 }
+            }
+        });
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -78,5 +98,6 @@ public class CartActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         binding.rvCart.setLayoutManager(layoutManager);
         buttonCart = findViewById(R.id.btn_checkout);
+        btnBack = findViewById(R.id.back_container);
     }
 }

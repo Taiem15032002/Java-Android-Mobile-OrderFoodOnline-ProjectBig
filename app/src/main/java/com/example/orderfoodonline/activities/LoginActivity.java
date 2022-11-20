@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     public TextView register;
     public TextView forgotpass;
     public TextView btnLogin;
+    public boolean islogin = true;
     FoodAppApi foodAppApi;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
 
@@ -37,12 +39,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initView();
-        initLogin();
-        initRegister();
-        initForgotpassword();
+        initControl();
     }
 
-    private void initRegister() {
+    public void initControl() {
+        //btn Register
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,9 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    private void initForgotpassword() {
+        //btn forgotpass
         forgotpass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,44 +61,52 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    public void initLogin() {
+        //btn login
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String strusername = edtusername.getText().toString().trim();
                 String strPass = edtpassword.getText().toString().trim();
                 if (TextUtils.isEmpty(strusername)) {
-                    Toast.makeText(getApplicationContext(), "Vui lòng nhập username", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Vui lòng nhập email", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(strPass)) {
                     Toast.makeText(getApplicationContext(), "Vui lòng nhập mật khẩu", Toast.LENGTH_SHORT).show();
                 } else {
                     //luu username vao paper
-                    Paper.book().write("username", strusername);
+                    Paper.book().write("email", strusername);
                     Paper.book().write("pass", strPass);
-                    compositeDisposable.add(foodAppApi.dangNhap(strusername, strPass)
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(
-                                    userModels -> {
-                                        if (userModels.isSuccess()) {
-                                            Toast.makeText(getApplicationContext(), "Đăng nhập thành công !", Toast.LENGTH_SHORT).show();
-                                            Utils.user_current = userModels.getResult().get(0);
-                                            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                                            startActivity(intent);
-                                            finish();
-                                        }else{
-                                            Toast.makeText(getApplicationContext(), "Username hoặc Password không đúng !", Toast.LENGTH_SHORT).show();
-                                        }
-                                    },
-                                    throwable -> {
-                                        Toast.makeText(getApplicationContext(), "Hỏng chương trình", Toast.LENGTH_SHORT).show();
-                                    }
-                            ));
+                    dangnhap(strusername, strPass);
                 }
             }
         });
+    }
+
+    private void dangnhap(String strusername, String strPass) {
+        compositeDisposable.add(foodAppApi.dangNhap(strusername, strPass)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        userModels -> {
+                            if (userModels.isSuccess()) {
+                                Toast.makeText(getApplicationContext(), "Đăng nhập thành công !", Toast.LENGTH_SHORT).show();
+                                islogin = true;
+                                Paper.book().read("islogin", islogin);
+                                Utils.user_current = userModels.getResult().get(0);
+                                //Luu thong tin
+                                Paper.book().read("email", userModels.getResult().get(0));
+                                Paper.book().write("sdt",Utils.user_current.getMobile());
+                                Paper.book().write("username",Utils.user_current.getUsername());
+                                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }else{
+                                Toast.makeText(getApplicationContext(), "Email hoặc Password không đúng !", Toast.LENGTH_SHORT).show();
+                            }
+                        },
+                        throwable -> {
+                            Toast.makeText(getApplicationContext(), "Hỏng chương trình", Toast.LENGTH_SHORT).show();
+                        }
+                ));
     }
 
 
@@ -111,19 +118,31 @@ public class LoginActivity extends AppCompatActivity {
         register = findViewById(R.id.tvBanchuacotaikhoan);
         forgotpass = findViewById(R.id.tvQuenmatkhau);
         btnLogin = findViewById(R.id.btnLogin);
-//        //doc du lieu tu paper
-//        if (Paper.book().read("username") != null && Paper.book().read("pass") != null) {
-//            edtusername.setText(Paper.book().read("username"));
-//            edtpassword.setText(Paper.book().read("pass"));
-//        }
+
+        //doc du lieu tu paper
+        if (Paper.book().read("email") != null && Paper.book().read("pass") != null) {
+            edtusername.setText(Paper.book().read("email"));
+            edtpassword.setText(Paper.book().read("pass"));
+            if (Paper.book().read("islogin") != null){
+                boolean fla = Paper.book().read("islogin");
+                if(fla){
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            dangnhap(Paper.book().read("email"), Paper.book().read("pass"));
+                        }
+                    }, 1000);
+                }
+            }
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         //Kiem tra
-        if (Utils.user_current.getUsername() != null && Utils.user_current.getPass() != null) {
-            edtusername.setText(Utils.user_current.getUsername());
+        if (Utils.user_current.getEmail() != null && Utils.user_current.getPass() != null) {
+            edtusername.setText(Utils.user_current.getEmail());
             edtpassword.setText(Utils.user_current.getPass());
         }
     }

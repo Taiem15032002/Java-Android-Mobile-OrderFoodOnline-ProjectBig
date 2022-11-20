@@ -48,7 +48,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tên : Tài Em"
-                    android:layout_marginLeft="@dimen/_7sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_7sdp"
                     android:textSize="15dp"
                     android:textStyle="bold"
@@ -60,7 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="SDT: 0703153942"
-                    android:layout_marginLeft="@dimen/_7sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_7sdp"
                     android:textSize="15dp"
                     android:textStyle="bold"
@@ -72,16 +72,34 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tổng tiền: 65000 VND"
-                    android:layout_marginLeft="@dimen/_7sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_7sdp"
                     android:textSize="15dp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/tv_sdt"
                     app:layout_constraintStart_toStartOf="parent"/>
+                <EditText
+                    android:id="@+id/edtdiachi"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:hint="Nhập địa chỉ giao hàng"
+                    android:drawablePadding="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="#A5A5A5"
+                    android:background="@drawable/edittext_userlogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_tongtienthanhtoan"
+                    android:autofillHints="30dp" />
                 <TextView
                     android:id="@+id/tvTTT"
-                    app:layout_constraintTop_toBottomOf="@id/tv_tongtienthanhtoan"
+                    app:layout_constraintTop_toBottomOf="@id/edtdiachi"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -134,20 +152,20 @@
                     app:layout_constraintTop_toBottomOf="@id/grrd"
                     app:layout_constraintStart_toStartOf="parent">
                 </androidx.appcompat.widget.AppCompatButton>
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_zalopay"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:background="@drawable/btn_checkout"
-                    android:layout_margin="@dimen/_10sdp"
-                    android:gravity="center"
-                    android:text="THANH TOÁN BẰNG ZALOPAY"
-                    android:textColor="@color/main_color"
-                    android:textSize="@dimen/_15sdp"
-                    android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@id/btn_momo"
-                    app:layout_constraintStart_toStartOf="parent">
-                </androidx.appcompat.widget.AppCompatButton>
+<!--                <androidx.appcompat.widget.AppCompatButton-->
+<!--                    android:id="@+id/btn_zalopay"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="@dimen/_40sdp"-->
+<!--                    android:background="@drawable/btn_checkout"-->
+<!--                    android:layout_margin="@dimen/_10sdp"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="THANH TOÁN BẰNG ZALOPAY"-->
+<!--                    android:textColor="@color/main_color"-->
+<!--                    android:textSize="@dimen/_15sdp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/btn_momo"-->
+<!--                    app:layout_constraintStart_toStartOf="parent">-->
+<!--                </androidx.appcompat.widget.AppCompatButton>-->
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
         <androidx.coordinatorlayout.widget.CoordinatorLayout

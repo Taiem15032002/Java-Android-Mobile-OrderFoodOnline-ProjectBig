@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.example.orderfoodonline.R;
 import com.example.orderfoodonline.Utils.Utils;
 
+import io.paperdb.Paper;
+
 public class PrePaymenActivity extends AppCompatActivity {
 
     TextView tvuser, tvsdt, tvtongtienthanhtoan, back_container;
@@ -22,14 +24,17 @@ public class PrePaymenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_paymen);
+        Paper.init(this);
         initView();
         initControl();
     }
 
     private void initControl() {
         tvtongtienthanhtoan.setText("Tổng tiền: "+getIntent().getIntExtra("tongtien", 0) + " VND");
-        tvuser.setText("Tên: "+ Utils.user_current.getUsername());
-        tvsdt.setText("SDT: "+ Utils.user_current.getMobile());
+        String userN = Paper.book().read("username");
+//        Paper.book().write("sdT", Utils.user_current.getMobile());
+        tvuser.setText("Tên: "+ Paper.book().read("username"));
+        tvsdt.setText("SDT: "+ Paper.book().read("sdt"));
 
         //set click Back
         back_container.setOnClickListener(new View.OnClickListener() {
