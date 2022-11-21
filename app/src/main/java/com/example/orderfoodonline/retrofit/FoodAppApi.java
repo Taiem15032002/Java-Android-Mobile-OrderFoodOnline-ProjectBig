@@ -57,6 +57,11 @@ public interface FoodAppApi {
     Call<FoodDetailModels> getFooddetail(
             @Field("id") int id
     );
+    @POST("timkiem.php")
+    @FormUrlEncoded
+    Observable<FoodDetailModels> search(
+            @Field("namefood") String namefood
+    );
     //api don hang
     @POST("donhang.php")
     @FormUrlEncoded

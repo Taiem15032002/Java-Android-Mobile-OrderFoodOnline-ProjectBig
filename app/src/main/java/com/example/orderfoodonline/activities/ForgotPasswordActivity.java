@@ -15,6 +15,7 @@ import com.example.orderfoodonline.R;
 import com.example.orderfoodonline.Utils.Utils;
 import com.example.orderfoodonline.retrofit.FoodAppApi;
 import com.example.orderfoodonline.retrofit.Retrofitinstance;
+import com.google.gson.annotations.Until;
 
 import io.paperdb.Paper;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -28,13 +29,14 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     TextView next;
     FoodAppApi foodAppApi;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
-
+    private Object FoodAppApi;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
+        Paper.init(this);
         initView();
         initControl();
     }
@@ -84,7 +86,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        //FoodAppApi = Retrofitinstance.getRetrofit(Utils.user_current).create(FoodAppApi.class);
+        //FoodAppApi = Retrofitinstance.getRetrofit(Until.user_current).create(FoodAppApi.class);
         email = findViewById(R.id.edtEmail_Forgot);
         password = findViewById(R.id.edtPassword_Forgot);
         repassword = findViewById(R.id.edtRePassword_Forgot);

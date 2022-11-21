@@ -6,6 +6,9 @@
         <entry key="..\:/Users/Admin/OrderFoodOnline/app/src/main/res/drawable/backgr_search_edit.xml" value="0.171" />
         <entry key="..\:/Users/Admin/OrderFoodOnline/app/src/main/res/drawable/ic__search_24.xml" value="0.171" />
         <entry key="..\:/Users/Admin/OrderFoodOnline/app/src/main/res/drawable/ic_search.xml" value="0.171" />
+        <entry key="..\:/Users/Admin/OrderFoodOnline/app/src/main/res/layout/activity_category.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/OrderFoodOnline/app/src/main/res/layout/activity_dealtail_food.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/OrderFoodOnline/app/src/main/res/layout/activity_favourites.xml" value="0.25" />
         <entry key="..\:/Users/Admin/OrderFoodOnline/app/src/main/res/layout/activity_forgot_password.xml" value="0.1" />
         <entry key="..\:/Users/Admin/OrderFoodOnline/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/Users/Admin/OrderFoodOnline/app/src/main/res/layout/activity_search.xml" value="0.25" />
