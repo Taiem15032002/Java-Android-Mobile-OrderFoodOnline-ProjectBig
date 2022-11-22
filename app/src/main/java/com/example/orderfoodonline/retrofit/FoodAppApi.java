@@ -1,5 +1,6 @@
 package com.example.orderfoodonline.retrofit;
 
+import com.example.orderfoodonline.models.AddFoodModels;
 import com.example.orderfoodonline.models.CategoryModels;
 import com.example.orderfoodonline.models.FoodDetailModels;
 import com.example.orderfoodonline.models.RamenModels;
@@ -20,6 +21,11 @@ public interface FoodAppApi {
     @FormUrlEncoded
     Call<RamenModels> getRamen(
             @Field("idcate") int idcate
+    );
+    //sanpham moi
+    @POST("sanphammoi.php")
+    @FormUrlEncoded
+    Observable<RamenModels> getSPmoi(
     );
     //Lay du lieu tu list more food
     @POST("food_category.php")
@@ -52,13 +58,24 @@ public interface FoodAppApi {
     //api don hang
     @POST("donhang.php")
     @FormUrlEncoded
-    Call<FoodDetailModels> createOrder(
-            @Field("email") String email,
-            @Field("mobile") String mobile,
-            @Field("tongtien") String tongtien,
+    Observable<FoodDetailModels> createOrder(
             @Field("iduser") int id,
             @Field("diachi") String diachi,
+            @Field("mobile") String mobile,
             @Field("soluong") int soluong,
-            @Field("chitiet") String chitiet
+            @Field("tongtien") String tongtien,
+            @Field("username") String username,
+            @Field("chitietsp") String chitiet
+    );
+    //api them san pham
+    @POST("insertSp.php")
+    @FormUrlEncoded
+    Observable<AddFoodModels> themSp(
+            @Field("namefood") String namefood,
+            @Field("foodThumb") String foodThumb,
+            @Field("foodPrice") String foodPrice,
+            @Field("foodDecription") String foodDecription,
+            @Field("idmorefood") int idmorefood,
+            @Field("category") String category
     );
 }

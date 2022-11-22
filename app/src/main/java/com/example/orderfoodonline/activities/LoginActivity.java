@@ -2,6 +2,7 @@ package com.example.orderfoodonline.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,8 +34,11 @@ public class LoginActivity extends AppCompatActivity {
     public TextView forgotpass;
     public TextView btnLogin;
     public boolean islogin = true;
+    RadioGroup radioGroup;
+    RadioButton rd1, rd2, rd3;
     FoodAppApi foodAppApi;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
+    boolean isLogin = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,9 +79,38 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Vui lòng nhập mật khẩu", Toast.LENGTH_SHORT).show();
                 } else {
                     //luu username vao paper
+
                     Paper.book().write("email", strusername);
                     Paper.book().write("pass", strPass);
-                    dangnhap(strusername, strPass);
+                    if (rd1.isChecked() != true && rd2.isChecked() != true && rd3.isChecked() != true){
+                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(v.getRootView().getContext());
+                        builder.setTitle("Thông báo");
+                        builder.setMessage("Hãy chọn 1 quyền đăng nhập!");
+                        builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        builder.show();
+                    }
+                    else if (rd1.isChecked() == true){
+                        dangnhap(strusername, strPass);
+                    }else if(rd2.isChecked() == true){
+                        Intent intent = new Intent(getApplicationContext(), HomeManagerActivity.class);
+                        startActivity(intent);
+                    }else if(rd3.isChecked() == true){
+                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(v.getRootView().getContext());
+                        builder.setTitle("Thông báo");
+                        builder.setMessage("Đang phát triển quyền shipper!");
+                        builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        builder.show();
+                    }
                 }
             }
         });
@@ -97,6 +132,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Paper.book().write("sdt",Utils.user_current.getMobile());
                                 Paper.book().write("username",Utils.user_current.getUsername());
                                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                intent.putExtra("idUserY",Utils.user_current.getId());
                                 startActivity(intent);
                                 finish();
                             }else{
@@ -118,6 +154,10 @@ public class LoginActivity extends AppCompatActivity {
         register = findViewById(R.id.tvBanchuacotaikhoan);
         forgotpass = findViewById(R.id.tvQuenmatkhau);
         btnLogin = findViewById(R.id.btnLogin);
+        radioGroup = findViewById(R.id.grdlogin);
+        rd1 = findViewById(R.id.rduser);
+        rd2 = findViewById(R.id.rdnhahang);
+        rd3 = findViewById(R.id.rdshipper);
 
         //doc du lieu tu paper
         if (Paper.book().read("email") != null && Paper.book().read("pass") != null) {

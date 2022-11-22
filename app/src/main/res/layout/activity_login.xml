@@ -53,6 +53,48 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
+                <RadioGroup
+                    android:id="@+id/grdlogin"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/container_banner"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RadioButton
+                        android:id="@+id/rduser"
+                        app:layout_constraintTop_toBottomOf="@id/grdlogin"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Khách hàng"/>
+                    <RadioButton
+                        android:id="@+id/rdnhahang"
+                        app:layout_constraintTop_toBottomOf="@id/grdlogin"
+                        app:layout_constraintStart_toEndOf="@+id/rd50"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nhà hàng"/>
+                    <RadioButton
+                        android:id="@+id/rdshipper"
+                        app:layout_constraintTop_toBottomOf="@id/grdlogin"
+                        app:layout_constraintStart_toEndOf="@+id/rdnhahang"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Shipper"/>
+                </RadioGroup>
                 <EditText
                     android:id="@+id/edtUsername"
                     android:padding="5dp"
@@ -66,11 +108,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="2dp"
                     android:layout_marginEnd="@dimen/_10sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/container_banner"
+                    app:layout_constraintTop_toBottomOf="@+id/grdlogin"
                     android:autofillHints="30dp" />
                 <EditText
                     android:id="@+id/edtPassword"

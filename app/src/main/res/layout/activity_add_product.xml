@@ -26,7 +26,7 @@
                     android:layout_height="100dp"
                     android:background="@color/main_color"
                     android:gravity="center"
-                    android:text="Payment"
+                    android:text="Add Food"
                     android:textColor="@color/white"
                     android:textSize="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -43,47 +43,11 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/tv_tenUser"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tên : Tài Em"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_7sdp"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    app:layout_constraintTop_toBottomOf="@id/tvLogo"
-                    app:layout_constraintStart_toStartOf="parent"/>
-                <TextView
-                    android:id="@+id/tv_sdt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="SDT: 0703153942"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_7sdp"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    app:layout_constraintTop_toBottomOf="@id/tv_tenUser"
-                    app:layout_constraintStart_toStartOf="parent"/>
-                <TextView
-                    android:id="@+id/tv_tongtienthanhtoan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tổng tiền: 65000 VND"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_7sdp"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    app:layout_constraintTop_toBottomOf="@id/tv_sdt"
-                    app:layout_constraintStart_toStartOf="parent"/>
                 <EditText
-                    android:id="@+id/edtdiachi"
+                    android:id="@+id/edtTenmonan"
                     android:padding="5dp"
                     android:singleLine="true"
-                    android:hint="Nhập địa chỉ giao hàng"
+                    android:hint="Nhập tên món ăn"
                     android:drawablePadding="10dp"
                     android:textColor="@color/black"
                     android:textColorHint="#A5A5A5"
@@ -95,93 +59,93 @@
                     android:layout_marginEnd="@dimen/_10sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_tongtienthanhtoan"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLogo"
                     android:autofillHints="30dp" />
-                <TextView
-                    android:id="@+id/tvTTT"
-                    app:layout_constraintTop_toBottomOf="@id/edtdiachi"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Thanh toán trước"
-                    android:textStyle="bold"
+                <EditText
+                    android:id="@+id/edtGiamonan"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:hint="Nhập giá món ăn"
+                    android:drawablePadding="10dp"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_20sdp"
-                    android:layout_marginLeft="@dimen/_10sdp"/>
-                <RadioGroup
-                    android:id="@+id/grrd"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@id/tvTTT"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <RadioButton
-                        android:id="@+id/rd50"
-                        app:layout_constraintTop_toBottomOf="@id/grrd"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_10sdp"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Thanh toán trước 50%"/>
-                    <RadioButton
-                        android:id="@+id/rd100"
-                        app:layout_constraintTop_toBottomOf="@id/grrd"
-                        app:layout_constraintStart_toEndOf="@+id/rd50"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_10sdp"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Thanh toán toàn bộ"/>
-                </RadioGroup>
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_momo"
+                    android:textColorHint="#A5A5A5"
+                    android:background="@drawable/edittext_userlogin"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
-                    android:backgroundTint="#b0006d"
-                    android:background="@drawable/btn_checkout"
-                    android:layout_margin="@dimen/_10sdp"
-                    android:gravity="center"
-                    android:text="THANH TOÁN BẰNg MOMO"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_15sdp"
-                    android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@id/grrd"
-                    app:layout_constraintStart_toStartOf="parent">
-                </androidx.appcompat.widget.AppCompatButton>
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edtTenmonan"
+                    android:autofillHints="30dp" />
+                <EditText
+                    android:id="@+id/edtHinhAnh"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:hint="Hình ảnh"
+                    android:drawablePadding="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="#A5A5A5"
+                    android:background="@drawable/edittext_userlogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edtGiamonan"
+                    android:autofillHints="30dp" />
+                <EditText
+                    android:id="@+id/edtmota"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:hint="Mô tả"
+                    android:drawablePadding="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="#A5A5A5"
+                    android:background="@drawable/edittext_userlogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edtHinhAnh"
+                    android:autofillHints="30dp" />
+                <Spinner
+                    android:id="@+id/spLoai"
+                    android:textColor="@color/black"
+                    android:textColorHint="#A5A5A5"
+                    android:background="@drawable/edittext_userlogin"
+                    android:hint="Loại"
+                    android:autofillHints="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edtmota">
+                </Spinner>
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btndathang"
+                    android:id="@+id/btn_themsp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:backgroundTint="@color/main_color"
                     android:background="@drawable/btn_checkout"
                     android:layout_margin="@dimen/_10sdp"
                     android:gravity="center"
-                    android:text="ĐẶt HÀNG"
+                    android:text="NEXT"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@id/btn_momo"
+                    app:layout_constraintTop_toBottomOf="@id/spLoai"
                     app:layout_constraintStart_toStartOf="parent">
                 </androidx.appcompat.widget.AppCompatButton>
-<!--                <androidx.appcompat.widget.AppCompatButton-->
-<!--                    android:id="@+id/btn_zalopay"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="@dimen/_40sdp"-->
-<!--                    android:background="@drawable/btn_checkout"-->
-<!--                    android:layout_margin="@dimen/_10sdp"-->
-<!--                    android:gravity="center"-->
-<!--                    android:text="THANH TOÁN BẰNG ZALOPAY"-->
-<!--                    android:textColor="@color/main_color"-->
-<!--                    android:textSize="@dimen/_15sdp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    app:layout_constraintTop_toBottomOf="@id/btn_momo"-->
-<!--                    app:layout_constraintStart_toStartOf="parent">-->
-<!--                </androidx.appcompat.widget.AppCompatButton>-->
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
         <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -209,6 +173,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <ImageView
+                            android:id="@+id/toHomeAdmin"
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -221,18 +186,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <ImageView
-                            android:layout_gravity="center"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_star">
-                        </ImageView>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_weight="2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <ImageView
+                            android:id="@+id/toChatAdmin"
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -245,6 +199,20 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <ImageView
+                            android:id="@+id/toAddSP"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_add_24">
+                        </ImageView>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:id="@+id/toOrdersAdmin"
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -257,6 +225,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <ImageView
+                            android:id="@+id/toCartAdmin"
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -269,11 +238,11 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <ImageView
+                            android:id="@+id/toSettingAdmin"
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_person_white"
-                            tools:ignore="ContentDescription">
+                            android:src="@drawable/ic_person_white">
                         </ImageView>
                     </LinearLayout>
                 </LinearLayout>

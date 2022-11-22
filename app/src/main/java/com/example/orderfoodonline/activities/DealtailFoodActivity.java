@@ -108,7 +108,7 @@ public class DealtailFoodActivity extends AppCompatActivity {
             Utils.cartList.add(cart);
         }
         Toast.makeText(getApplicationContext(), "Add to cart", Toast.LENGTH_LONG).show();
-        //Luu vao paper
+//        //Luu vao paper
         Paper.book().write("cart", Utils.cartList);
     }
 
