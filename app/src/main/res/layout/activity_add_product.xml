@@ -79,24 +79,40 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtTenmonan"
                     android:autofillHints="30dp" />
-                <EditText
-                    android:id="@+id/edtHinhAnh"
-                    android:padding="5dp"
-                    android:singleLine="true"
-                    android:hint="Hình ảnh"
-                    android:drawablePadding="10dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="#A5A5A5"
-                    android:background="@drawable/edittext_userlogin"
+                <LinearLayout
+                    android:id="@+id/edtLN"
+                    app:layout_constraintTop_toBottomOf="@id/edtGiamonan"
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtGiamonan"
-                    android:autofillHints="30dp" />
+                    android:layout_height="wrap_content"
+                    >
+                    <EditText
+                        android:id="@+id/edtHinhAnh"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:hint="Hình ảnh"
+                        android:drawablePadding="10dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#A5A5A5"
+                        android:background="@drawable/edittext_userlogin"
+                        android:layout_width="@dimen/_250sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edtGiamonan"
+                        android:autofillHints="30dp" />
+                    <ImageView
+                        android:id="@+id/imageCamera"
+                        android:src="@drawable/ic_baseline_photo_camera_24"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginStart="@dimen/_1sdp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="@dimen/_10sdp"></ImageView>
+                </LinearLayout>
                 <EditText
                     android:id="@+id/edtmota"
                     android:padding="5dp"
@@ -113,7 +129,7 @@
                     android:layout_marginEnd="@dimen/_10sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtHinhAnh"
+                    app:layout_constraintTop_toBottomOf="@+id/edtLN"
                     android:autofillHints="30dp" />
                 <Spinner
                     android:id="@+id/spLoai"

@@ -21,12 +21,12 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if(Paper.book().read("username") == null){
-                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
                     finish();
                 }
                 else{
-                    Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                     startActivity(intent);
                     finish();
                 }

@@ -72,6 +72,8 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
     //Gson Google
     implementation 'com.google.code.gson:gson:2.10'
+    //Image picker
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
     //Momo
 //    implementation 'com.github.momo-wallet:mobile-sdk:1.0.7'
 }

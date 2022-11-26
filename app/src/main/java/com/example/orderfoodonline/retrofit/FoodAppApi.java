@@ -7,11 +7,14 @@ import com.example.orderfoodonline.models.RamenModels;
 import com.example.orderfoodonline.models.UserModels;
 
 import io.reactivex.rxjava3.core.Observable;
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 public interface FoodAppApi {
     @GET("category.php")
@@ -78,4 +81,9 @@ public interface FoodAppApi {
             @Field("idmorefood") int idmorefood,
             @Field("category") String category
     );
+
+    //upload
+    @Multipart
+    @POST("uploadimg.php")
+    Call<AddFoodModels> uploadFile(@Part MultipartBody.Part file);
 }

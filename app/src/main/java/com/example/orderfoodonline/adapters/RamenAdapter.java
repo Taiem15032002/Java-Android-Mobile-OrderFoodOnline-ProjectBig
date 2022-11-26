@@ -1,5 +1,6 @@
 package com.example.orderfoodonline.adapters;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,11 +9,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.orderfoodonline.Utils.Utils;
 import com.example.orderfoodonline.databinding.ItemFoodBinding;
 import com.example.orderfoodonline.listener.DetailListener;
 import com.example.orderfoodonline.models.Ramen;
 
 import java.util.List;
+
+import okhttp3.MediaType;
 
 public class RamenAdapter extends RecyclerView.Adapter<RamenAdapter.MyViewHolder> {
     private List<Ramen> list;
@@ -33,7 +37,12 @@ public class RamenAdapter extends RecyclerView.Adapter<RamenAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.setBinding(list.get(position));
-        Glide.with(holder.itemView).load(list.get(position).getFoodThumb()).into(holder.binding.imageFood);
+        if (list.get(position).getFoodThumb().contains("https")){
+            Glide.with(holder.itemView).load(list.get(position).getFoodThumb()).into(holder.binding.imageFood);
+        }else{
+            Glide.with(holder.itemView).load(Utils.hinh+list.get(position).getFoodThumb()).into(holder.binding.imageFood);
+        }
+//        Glide.with(holder.itemView).load(list.get(position).getFoodThumb()).into(holder.binding.imageFood);
 //        Glide.with(holder.itemView).load(list.get(position).getNamefood()).into(holder.binding.imageFood);
 //        Glide.with(holder.itemView).load(list.get(position).getFoodPrice()).into(holder.binding.imageFood);
     }

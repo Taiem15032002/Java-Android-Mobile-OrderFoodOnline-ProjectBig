@@ -1,11 +1,17 @@
 package com.example.orderfoodonline.activities;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.AndroidException;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,25 +20,37 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.orderfoodonline.R;
+import com.example.orderfoodonline.Utils.Utils;
+import com.example.orderfoodonline.adapters.RamenAdapter;
 import com.example.orderfoodonline.databinding.ActivityAddProductBinding;
+import com.example.orderfoodonline.models.AddFoodModels;
+import com.example.orderfoodonline.models.Ramen;
 import com.example.orderfoodonline.retrofit.FoodAppApi;
 import com.example.orderfoodonline.retrofit.Retrofitinstance;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddProductActivity extends AppCompatActivity {
 
     Spinner spLoaiSP;
     AppCompatActivity btnThemsp;
-    EditText edtTenSP, edtGia, edtHinhAnh, edtMota;
     int loai = 0;
     ActivityAddProductBinding binding;
     FoodAppApi foodAppApi;
+    String mediaPath;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     @Override
@@ -73,7 +91,24 @@ public class AddProductActivity extends AppCompatActivity {
                 themmonan(v);
             }
         });
+        binding.imageCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImagePicker.with(AddProductActivity.this)
+                        .crop()
+                        .compress(1024)
+                        .maxResultSize(1080, 1080)
+                        .start();
+            }
+        });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mediaPath = data.getDataString();
+        uploadMultipleFiles();
     }
 
     private void themmonan(View v) {
@@ -125,6 +160,59 @@ public class AddProductActivity extends AppCompatActivity {
                             }
                     ));
         }
+    }
+    ///Lay duong dan that cua Image
+    private String getPath(Uri uri){
+        String result;
+        Cursor cursor = getContentResolver().query(uri,null,null,null, null);
+        if (cursor == null){
+            result = uri.getPath();
+        }else{
+            cursor.moveToFirst();
+            int index = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            result = cursor.getString(index);
+            cursor.close();
+        }
+        return result;
+    }
+    // Uploading Image/Video
+    private void uploadMultipleFiles() {
+        Uri uri = Uri.parse(mediaPath);
+
+        File file = new File(getPath(uri));
+        // Parsing any Media type file
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
+
+        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
+
+        Call<AddFoodModels> call = foodAppApi.uploadFile(fileToUpload);
+        call.enqueue(new Callback<AddFoodModels>() {
+            @Override
+            public void onResponse(Call<AddFoodModels> call, Response<AddFoodModels> response) {
+                AddFoodModels serverResponse = response.body();
+                Log.d("testimage","Trong call"+ Utils.hinh +serverResponse.getName());
+                Log.d("testimage","Trong call"+mediaPath);
+                if (serverResponse != null) {
+                    if (serverResponse.isSuccess()) {
+                       binding.edtHinhAnh.setText(serverResponse.getName());
+                        Toast.makeText(getApplicationContext(), serverResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        Log.d("testimage","onAct"+mediaPath);
+                        Toast.makeText(getApplicationContext(), serverResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+//                    assert serverResponse != null;
+                    Log.d("Response",   serverResponse.getName());
+                    Log.d("testimage","qua sai"+mediaPath);
+
+                }
+            }
+            @Override
+            public void onFailure(Call<AddFoodModels> call, Throwable t) {
+                Log.d("log", t.getMessage());
+            }
+        });
     }
 
     private void initControl() {

@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.orderfoodonline.Utils.Utils;
 import com.example.orderfoodonline.databinding.ItemCategoryFoodBinding;
 import com.example.orderfoodonline.databinding.ItemFoodBinding;
 import com.example.orderfoodonline.listener.DetailListener;
@@ -35,7 +36,12 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.setBinding(foodList.get(position));
-        Glide.with(holder.itemView).load(foodList.get(position).getFoodThumb()).into(holder.binding.imageCategoryFood);
+        if (foodList.get(position).getFoodThumb().contains("https")){
+            Glide.with(holder.itemView).load(foodList.get(position).getFoodThumb()).into(holder.binding.imageCategoryFood);
+        }else{
+            Glide.with(holder.itemView).load(Utils.hinh+foodList.get(position).getFoodThumb()).into(holder.binding.imageCategoryFood);
+        }
+
     }
 
     @Override

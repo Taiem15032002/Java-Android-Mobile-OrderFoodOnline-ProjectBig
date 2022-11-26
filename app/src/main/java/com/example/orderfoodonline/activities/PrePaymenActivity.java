@@ -66,7 +66,7 @@ public class PrePaymenActivity extends AppCompatActivity {
         int tongtien = getIntent().getIntExtra("tongtien",0);
         String userN = Paper.book().read("username");
         String sdtN =  Paper.book().read("sdt");
-        int idN =  getIntent().getIntExtra("idUserY",0);
+        int idN =  Paper.book().read("iduser");
 //        Paper.book().write("sdT", Utils.user_current.getMobile());
         tvuser.setText("Tên: "+ Paper.book().read("username"));
         tvsdt.setText("SDT: "+ Paper.book().read("sdt"));
@@ -124,7 +124,7 @@ public class PrePaymenActivity extends AppCompatActivity {
                     String str_sdt = Utils.user_current.getMobile();
                     int id = Utils.user_current.getId();
                     Log.d("dathang", new Gson().toJson(Utils.cartList));
-                    compositeDisposable.add(foodAppApi.createOrder(id, str_diachi,sdtN,totalItem,String.valueOf(tongtien),userN,new Gson().toJson(Utils.cartList))
+                    compositeDisposable.add(foodAppApi.createOrder(idN, str_diachi,sdtN,totalItem,String.valueOf(tongtien),userN,new Gson().toJson(Utils.cartList))
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(
@@ -133,6 +133,7 @@ public class PrePaymenActivity extends AppCompatActivity {
                                         startActivity(intent);
                                         finish();
                                     }, throwable -> {
+                                        Toast.makeText(getApplicationContext(), "Hu roix", Toast.LENGTH_SHORT).show();
                                     }
                             ));
                 }

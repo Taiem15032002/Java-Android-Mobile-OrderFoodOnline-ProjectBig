@@ -123,6 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                 .subscribe(
                         userModels -> {
                             if (userModels.isSuccess()) {
+                                //Toast.makeText(getApplicationContext(), Utils.user_current.getId(), Toast.LENGTH_SHORT).show();
                                 Toast.makeText(getApplicationContext(), "Đăng nhập thành công !", Toast.LENGTH_SHORT).show();
                                 islogin = true;
                                 Paper.book().read("islogin", islogin);
@@ -131,8 +132,8 @@ public class LoginActivity extends AppCompatActivity {
                                 Paper.book().read("email", userModels.getResult().get(0));
                                 Paper.book().write("sdt",Utils.user_current.getMobile());
                                 Paper.book().write("username",Utils.user_current.getUsername());
+                                Paper.book().write("iduser",Utils.user_current.getId());
                                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                                intent.putExtra("idUserY",Utils.user_current.getId());
                                 startActivity(intent);
                                 finish();
                             }else{
