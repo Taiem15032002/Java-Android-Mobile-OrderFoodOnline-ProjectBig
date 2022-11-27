@@ -6,6 +6,9 @@ import android.os.Looper;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.orderfoodonline.R;
+
+import io.paperdb.Paper;
+
 public class SplashActivity extends AppCompatActivity {
     //Splash Time
     int SPLASH_TIME_OUT = 3500;
@@ -13,12 +16,20 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        Paper.init(this);
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+                if(Paper.book().read("username") == null){
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else{
+                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         }, SPLASH_TIME_OUT);
 //        new Handler().postDelayed(() -> {

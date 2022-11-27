@@ -24,6 +24,8 @@ import com.example.orderfoodonline.models.Category;
 import com.example.orderfoodonline.models.Ramen;
 import com.example.orderfoodonline.viewModels.HomeViewModel;
 
+import io.paperdb.Paper;
+
 public class HomeActivity extends AppCompatActivity implements CategoryListener,DetailListener{
     HomeViewModel homeViewModel;
     ActivityHomeBinding binding;
@@ -34,34 +36,10 @@ public class HomeActivity extends AppCompatActivity implements CategoryListener,
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         initView();
         initData();
+        initBottombar();
     }
 
-    private void initView() {
-        //Set Recycle View
-        binding.rvCategory.setHasFixedSize(true);
-        //set RV theo chieu ngang
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false);
-        binding.rvCategory.setLayoutManager(layoutManager);
-        //set RV theo chieu doc mi ramen
-        binding.rvMinhat.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager1 = new GridLayoutManager(this, 2);
-        binding.rvMinhat.setLayoutManager(layoutManager1);
-        //set RV theo chieu doc mi udon
-        binding.rvMiudon.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager2 = new GridLayoutManager(this, 2);
-        binding.rvMiudon.setLayoutManager(layoutManager2);
-        //set RV theo chieu doc mi soba
-        binding.rvSoba.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager3 = new GridLayoutManager(this, 2);
-        binding.rvSoba.setLayoutManager(layoutManager3);
-        //set RV theo chieu doc mi shirataki
-        binding.rvShirataki.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager4 = new GridLayoutManager(this, 2);
-        binding.rvShirataki.setLayoutManager(layoutManager4);
-        //set RV theo chieu doc mi somen
-        binding.rvSomen.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager5 = new GridLayoutManager(this, 2);
-        binding.rvSomen.setLayoutManager(layoutManager5);
+    private void initBottombar() {
         //-------------------------------//
         //set click cho btn to Cart
         binding.toCart.setOnClickListener(new View.OnClickListener() {
@@ -97,9 +75,22 @@ public class HomeActivity extends AppCompatActivity implements CategoryListener,
         binding.toChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Chức năng sắp ra mắt", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+                startActivity(intent);
             }
         });
+    }
+
+    private void initView() {
+        //Set Recycle View
+        binding.rvCategory.setHasFixedSize(true);
+        //set RV theo chieu ngang
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false);
+        binding.rvCategory.setLayoutManager(layoutManager);
+        //set RV theo chieu doc mi ramen
+        binding.rvMinhat.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager1 = new GridLayoutManager(this, 2);
+        binding.rvMinhat.setLayoutManager(layoutManager1);
     }
     //get Data tu Database vao RVcategory
     private void initData() {
@@ -109,7 +100,6 @@ public class HomeActivity extends AppCompatActivity implements CategoryListener,
                 //setAdapter cho RVcategory
                 CategoryAdapter adapter = new CategoryAdapter(categoryModels.getResult(), this);
                 binding.rvCategory.setAdapter(adapter);
-//              Toast.makeText(this, "haha", Toast.LENGTH_SHORT).show();
             }
         });
         //Mi ramen setadapter
@@ -119,45 +109,52 @@ public class HomeActivity extends AppCompatActivity implements CategoryListener,
                binding.rvMinhat.setAdapter(adapter);
            }
         });
-        //Mi udon setadapter
-        homeViewModel.ramenModelsMutableLiveData(2).observe(this, ramenModels -> {
-            if (ramenModels.isSuccess()){
-                RamenAdapter adapter = new RamenAdapter(ramenModels.getResult(),this);
-                binding.rvMiudon.setAdapter(adapter);
-            }
-        });
-        //Mi soba setadapter
-        homeViewModel.ramenModelsMutableLiveData(3).observe(this, ramenModels -> {
-            if (ramenModels.isSuccess()){
-                RamenAdapter adapter = new RamenAdapter(ramenModels.getResult(),this);
-                binding.rvSoba.setAdapter(adapter);
-            }
-        });
-        //Mi shirataki setadapter
-        homeViewModel.ramenModelsMutableLiveData(4).observe(this, ramenModels -> {
-            if (ramenModels.isSuccess()){
-                RamenAdapter adapter = new RamenAdapter(ramenModels.getResult(),this);
-                binding.rvShirataki.setAdapter(adapter);
-            }
-        });
-        //Mi somen setadapter
-        homeViewModel.ramenModelsMutableLiveData(5).observe(this, ramenModels -> {
-            if (ramenModels.isSuccess()){
-                RamenAdapter adapter = new RamenAdapter(ramenModels.getResult(), this);
-                binding.rvSomen.setAdapter(adapter);
-            }
-        });
-
-
+//        //Mi udon setadapter
+//        homeViewModel.ramenModelsMutableLiveData(2).observe(this, ramenModels -> {
+//            if (ramenModels.isSuccess()){
+//                RamenAdapter adapter = new RamenAdapter(ramenModels.getResult(),this);
+//                binding.rvMiudon.setAdapter(adapter);
+//            }
+//        });
+//        //Mi soba setadapter
+//        homeViewModel.ramenModelsMutableLiveData(3).observe(this, ramenModels -> {
+//            if (ramenModels.isSuccess()){
+//                RamenAdapter adapter = new RamenAdapter(ramenModels.getResult(),this);
+//                binding.rvSoba.setAdapter(adapter);
+//            }
+//        });
+//        //Mi shirataki setadapter
+//        homeViewModel.ramenModelsMutableLiveData(4).observe(this, ramenModels -> {
+//            if (ramenModels.isSuccess()){
+//                RamenAdapter adapter = new RamenAdapter(ramenModels.getResult(),this);
+//                binding.rvShirataki.setAdapter(adapter);
+//            }
+//        });
+//        //Mi somen setadapter
+//        homeViewModel.ramenModelsMutableLiveData(5).observe(this, ramenModels -> {
+//            if (ramenModels.isSuccess()){
+//                RamenAdapter adapter = new RamenAdapter(ramenModels.getResult(), this);
+//                binding.rvSomen.setAdapter(adapter);
+//            }
+//        });
     }
 
     @Override
     public void onCategoryClick(Category category) {
-        Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
-        //Truyen id
-        intent.putExtra("idcate",category.getId());
-        intent.putExtra("namecate",category.getCategory());
-        startActivity(intent);
+//        Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
+// Truyen id
+//        intent.putExtra("idcate",category.getId());
+//        intent.putExtra("namecate",category.getCategory());
+//        startActivity(intent);
+        //Mi setadapter
+        homeViewModel.ramenModelsMutableLiveData(category.getId()).observe(this, ramenModels -> {
+            if (ramenModels.isSuccess()){
+                binding.tvMiNhat.setText("Mì "+category.getCategory());
+                RamenAdapter adapter = new RamenAdapter(ramenModels.getResult(),this);
+                binding.rvMinhat.setAdapter(adapter);
+            }
+        });
+
     }
     @Override
     public void onMenuClick(Ramen ramen){

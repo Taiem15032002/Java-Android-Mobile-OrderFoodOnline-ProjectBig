@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.orderfoodonline.R;
+import com.example.orderfoodonline.Utils.Utils;
+
+import io.paperdb.Paper;
 
 public class SettingActivity extends AppCompatActivity {
 
@@ -17,6 +20,7 @@ public class SettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+        Paper.init(this);
         Anhxa();
         testchuyenhuong();
     }
@@ -25,7 +29,9 @@ public class SettingActivity extends AppCompatActivity {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SettingActivity.this, LoginActivity.class);
+                Paper.book().delete("username");
+                Paper.book().delete("sdt");
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
                 finish();
             }

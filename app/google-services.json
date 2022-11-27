@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "40644060673",
+    "project_id": "orderfoodonline-6b1a0",
+    "storage_bucket": "orderfoodonline-6b1a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:40644060673:android:5cbd10514ef6895ccf0200",
+        "android_client_info": {
+          "package_name": "com.example.orderfoodonline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "40644060673-b29r5ge68tnk65t934lhlsm5qe6rvlok.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZwJ5sysC1XOjIcpVGyTXbW5b-2KWigQM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "40644060673-b29r5ge68tnk65t934lhlsm5qe6rvlok.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
