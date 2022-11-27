@@ -1,6 +1,7 @@
 package com.example.orderfoodonline.adapters;
 
 import android.net.Uri;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,9 +43,6 @@ public class RamenAdapter extends RecyclerView.Adapter<RamenAdapter.MyViewHolder
         }else{
             Glide.with(holder.itemView).load(Utils.hinh+list.get(position).getFoodThumb()).into(holder.binding.imageFood);
         }
-//        Glide.with(holder.itemView).load(list.get(position).getFoodThumb()).into(holder.binding.imageFood);
-//        Glide.with(holder.itemView).load(list.get(position).getNamefood()).into(holder.binding.imageFood);
-//        Glide.with(holder.itemView).load(list.get(position).getFoodPrice()).into(holder.binding.imageFood);
     }
 
     @Override
@@ -58,6 +56,7 @@ public class RamenAdapter extends RecyclerView.Adapter<RamenAdapter.MyViewHolder
         public MyViewHolder(ItemFoodBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
+
         }
         private void setBinding(Ramen ramen){
             binding.setItemfood(ramen);
@@ -67,6 +66,13 @@ public class RamenAdapter extends RecyclerView.Adapter<RamenAdapter.MyViewHolder
                 @Override
                 public void onClick(View v) {
                     detailListener.onMenuClick(ramen);
+                }
+            });
+            binding.getRoot().setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
+                @Override
+                public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+                    menu.add(0,0,getAdapterPosition(),"Update");
+                    menu.add(0,1,getAdapterPosition(),"Delete");
                 }
             });
         }

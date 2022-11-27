@@ -45,7 +45,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Cart cart = cartList.get(position);
         holder.binding.tvNameFood.setText(cart.getFoodDetail().getFood_name());
-        Glide.with(context).load(cart.getFoodDetail().getFoodThumb()).into(holder.binding.imageCart);
+        if (cart.getFoodDetail().getFoodThumb().contains("https")){
+            Glide.with(context).load(cart.getFoodDetail().getFoodThumb()).into(holder.binding.imageCart);
+        }else{
+            Glide.with(context).load(Utils.hinh+cart.getFoodDetail().getFoodThumb()).into(holder.binding.imageCart);
+        }
 
         holder.binding.tvIdFoodCart.setText("Mã đơn hàng: "+cart.getFoodDetail().getId());
         holder.binding.tvPriceFood.setText("Giá: "+cart.getFoodDetail().getPrice() +"VND");

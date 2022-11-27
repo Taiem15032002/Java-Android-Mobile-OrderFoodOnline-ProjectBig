@@ -6,7 +6,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.UserManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +20,9 @@ import android.widget.Toast;
 
 import com.example.orderfoodonline.R;
 import com.example.orderfoodonline.Utils.Utils;
+import com.example.orderfoodonline.models.Ramen;
+import com.example.orderfoodonline.models.User;
+import com.example.orderfoodonline.models.UserModels;
 import com.example.orderfoodonline.retrofit.FoodAppApi;
 import com.example.orderfoodonline.retrofit.Retrofitinstance;
 
@@ -33,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     public TextView register;
     public TextView forgotpass;
     public TextView btnLogin;
-    public boolean islogin = true;
+    public boolean islogin = false;
     RadioGroup radioGroup;
     RadioButton rd1, rd2, rd3;
     FoodAppApi foodAppApi;
@@ -124,7 +129,6 @@ public class LoginActivity extends AppCompatActivity {
                         userModels -> {
                             if (userModels.isSuccess()) {
                                 //Toast.makeText(getApplicationContext(), Utils.user_current.getId(), Toast.LENGTH_SHORT).show();
-                                Toast.makeText(getApplicationContext(), "Đăng nhập thành công !", Toast.LENGTH_SHORT).show();
                                 islogin = true;
                                 Paper.book().read("islogin", islogin);
                                 Utils.user_current = userModels.getResult().get(0);
@@ -133,9 +137,13 @@ public class LoginActivity extends AppCompatActivity {
                                 Paper.book().write("sdt",Utils.user_current.getMobile());
                                 Paper.book().write("username",Utils.user_current.getUsername());
                                 Paper.book().write("iduser",Utils.user_current.getId());
-                                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                                startActivity(intent);
-                                finish();
+                                Paper.book().write("iduser1",Utils.user_current.getId());
+                                Toast.makeText(getApplicationContext(), "Đăng nhập thành công !" + Utils.user_current.getEmail(), Toast.LENGTH_SHORT).show();
+//                                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+//                                startActivity(intent);
+//                                finish();
+                                onLoginclick(Utils.user_current);
+                                Log.d("login","login" +userModels.getMessage()+"sdt: "+Utils.user_current.getId() +" dada: "+Paper.book().read("iduser1"));
                             }else{
                                 Toast.makeText(getApplicationContext(), "Email hoặc Password không đúng !", Toast.LENGTH_SHORT).show();
                             }
@@ -145,7 +153,13 @@ public class LoginActivity extends AppCompatActivity {
                         }
                 ));
     }
-
+    public void onLoginclick(User user) {
+        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+        //Truyen id
+        intent.putExtra("id",user.getId());
+        startActivity(intent);
+        finish();
+    }
 
     public void initView() {
         Paper.init(this);

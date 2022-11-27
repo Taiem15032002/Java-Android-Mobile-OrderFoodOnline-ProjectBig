@@ -142,7 +142,11 @@ public class DealtailFoodActivity extends AppCompatActivity {
                 activityDealtailFoodBinding.tvFoodDetail.setText(foodDetail.getFood_name());
                 activityDealtailFoodBinding.tvFoodPrice.setText("Giá tiền: "+foodDetail.getPrice()+"VND");
                 activityDealtailFoodBinding.textDesciptions.setText(foodDetail.getDecripstion());
-                Glide.with(this).load(foodDetail.getFoodThumb()).into(activityDealtailFoodBinding.imagedetail);
+                if (foodDetail.getFoodThumb().contains("https")){
+                    Glide.with(this).load(foodDetail.getFoodThumb()).into(activityDealtailFoodBinding.imagedetail);
+                }else{
+                    Glide.with(this).load(Utils.hinh+foodDetail.getFoodThumb()).into(activityDealtailFoodBinding.imagedetail);
+                }
             }
         });
     }

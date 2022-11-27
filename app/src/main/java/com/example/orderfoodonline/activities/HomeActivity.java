@@ -36,18 +36,10 @@ public class HomeActivity extends AppCompatActivity implements CategoryListener,
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         initView();
         initData();
+        initBottombar();
     }
 
-    private void initView() {
-        //Set Recycle View
-        binding.rvCategory.setHasFixedSize(true);
-        //set RV theo chieu ngang
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false);
-        binding.rvCategory.setLayoutManager(layoutManager);
-        //set RV theo chieu doc mi ramen
-        binding.rvMinhat.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager1 = new GridLayoutManager(this, 2);
-        binding.rvMinhat.setLayoutManager(layoutManager1);
+    private void initBottombar() {
         //-------------------------------//
         //set click cho btn to Cart
         binding.toCart.setOnClickListener(new View.OnClickListener() {
@@ -83,9 +75,22 @@ public class HomeActivity extends AppCompatActivity implements CategoryListener,
         binding.toChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Chức năng sắp ra mắt", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+                startActivity(intent);
             }
         });
+    }
+
+    private void initView() {
+        //Set Recycle View
+        binding.rvCategory.setHasFixedSize(true);
+        //set RV theo chieu ngang
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false);
+        binding.rvCategory.setLayoutManager(layoutManager);
+        //set RV theo chieu doc mi ramen
+        binding.rvMinhat.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager1 = new GridLayoutManager(this, 2);
+        binding.rvMinhat.setLayoutManager(layoutManager1);
     }
     //get Data tu Database vao RVcategory
     private void initData() {

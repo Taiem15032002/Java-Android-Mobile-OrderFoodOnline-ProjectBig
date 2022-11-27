@@ -101,7 +101,6 @@ public class AddProductActivity extends AppCompatActivity {
                         .start();
             }
         });
-
     }
 
     @Override
@@ -144,6 +143,7 @@ public class AddProductActivity extends AppCompatActivity {
                                         }
                                     });
                                     builder.show();
+                                    Toast.makeText(getApplicationContext(), "them thanh cong", Toast.LENGTH_SHORT).show();
                                 }else{
                                     android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getApplicationContext());
                                     builder.setTitle("Thông báo");
@@ -155,8 +155,10 @@ public class AddProductActivity extends AppCompatActivity {
                                         }
                                     });
                                     builder.show();
+                                    Toast.makeText(getApplicationContext(), "them that bai", Toast.LENGTH_SHORT).show();
                                 }
                             }, throwable -> {
+                                Toast.makeText(getApplicationContext(), "hong chuong chinh", Toast.LENGTH_SHORT).show();
                             }
                     ));
         }
@@ -205,7 +207,6 @@ public class AddProductActivity extends AppCompatActivity {
 //                    assert serverResponse != null;
                     Log.d("Response",   serverResponse.getName());
                     Log.d("testimage","qua sai"+mediaPath);
-
                 }
             }
             @Override

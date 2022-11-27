@@ -29,7 +29,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemCategoryFoodBinding itemCategoryFoodBinding = ItemCategoryFoodBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
-
         return new MyViewHolder(itemCategoryFoodBinding);
     }
 

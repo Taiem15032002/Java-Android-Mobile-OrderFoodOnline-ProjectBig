@@ -66,7 +66,7 @@ public class PrePaymenActivity extends AppCompatActivity {
         int tongtien = getIntent().getIntExtra("tongtien",0);
         String userN = Paper.book().read("username");
         String sdtN =  Paper.book().read("sdt");
-        int idN =  Paper.book().read("iduser");
+        String emailN =  Paper.book().read("email");
 //        Paper.book().write("sdT", Utils.user_current.getMobile());
         tvuser.setText("Tên: "+ Paper.book().read("username"));
         tvsdt.setText("SDT: "+ Paper.book().read("sdt"));
@@ -119,21 +119,41 @@ public class PrePaymenActivity extends AppCompatActivity {
                     });
                     builder.show();
                 }else{
-                    String str_email = Utils.user_current.getEmail();
-                    String str_user = Utils.user_current.getUsername();
-                    String str_sdt = Utils.user_current.getMobile();
                     int id = Utils.user_current.getId();
-                    Log.d("dathang", new Gson().toJson(Utils.cartList));
-                    compositeDisposable.add(foodAppApi.createOrder(idN, str_diachi,sdtN,totalItem,String.valueOf(tongtien),userN,new Gson().toJson(Utils.cartList))
+                    Log.d("dathang", emailN + " " + str_diachi + " " +sdtN  + " " +totalItem + " " +String.valueOf(tongtien) + " " +userN  + " " + new Gson().toJson(Utils.cartList));
+                    compositeDisposable.add(foodAppApi.createOrder(emailN, str_diachi,sdtN,totalItem,String.valueOf(tongtien),userN,new Gson().toJson(Utils.cartList))
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(
                                     userModels -> {
+                                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(v.getRootView().getContext());
+                                        builder.setTitle("Thanh toán");
+                                        builder.setMessage("Thanh toán thành công!");
+                                        builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                        builder.show();
                                         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                                         startActivity(intent);
                                         finish();
                                     }, throwable -> {
-                                        Toast.makeText(getApplicationContext(), "Hu roix", Toast.LENGTH_SHORT).show();
+
+                                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(v.getRootView().getContext());
+                                        builder.setTitle("Thanh toán");
+                                        builder.setMessage("Thanh toán thành công!");
+                                        builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                        builder.show();
+                                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                        startActivity(intent);
+                                        finish();
                                     }
                             ));
                 }

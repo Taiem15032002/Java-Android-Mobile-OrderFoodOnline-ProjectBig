@@ -23,6 +23,7 @@ import com.example.orderfoodonline.databinding.ActivityHomeManagerBinding;
 import com.example.orderfoodonline.listener.CategoryListener;
 import com.example.orderfoodonline.listener.DetailListener;
 import com.example.orderfoodonline.models.Category;
+import com.example.orderfoodonline.models.EventBus.UpdateFood;
 import com.example.orderfoodonline.models.Ramen;
 import com.example.orderfoodonline.models.RamenModels;
 import com.example.orderfoodonline.retrofit.FoodAppApi;
@@ -110,10 +111,11 @@ ActivityHomeManagerBinding binding;
     }
 
     public void onMenuClick(Ramen ramen){
-        Intent intent = new Intent(getApplicationContext(), DealtailFoodActivity.class);
-        //Truyen id
-        intent.putExtra("id",ramen.getId());
-        startActivity(intent);
+//        Intent intent = new Intent(getApplicationContext(), DealtailFoodActivity.class);
+//        //Truyen id
+//        intent.putExtra("id",ramen.getId());
+//        startActivity(intent);
+
     }
 
 }
