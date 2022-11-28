@@ -2,6 +2,7 @@ package com.example.orderfoodonline.retrofit;
 
 import com.example.orderfoodonline.models.AddFoodModels;
 import com.example.orderfoodonline.models.CategoryModels;
+import com.example.orderfoodonline.models.DonHangModels;
 import com.example.orderfoodonline.models.FoodDetailModels;
 import com.example.orderfoodonline.models.RamenModels;
 import com.example.orderfoodonline.models.UserModels;
@@ -81,7 +82,12 @@ public interface FoodAppApi {
             @Field("idmorefood") int idmorefood,
             @Field("category") String category
     );
-
+    //xem don hang
+    @POST("xemdonhang.php")
+    @FormUrlEncoded
+    Observable<DonHangModels> getDonHang(
+            @Field("emailuser") String emailuser
+    );
     //upload
     @Multipart
     @POST("uploadimg.php")
