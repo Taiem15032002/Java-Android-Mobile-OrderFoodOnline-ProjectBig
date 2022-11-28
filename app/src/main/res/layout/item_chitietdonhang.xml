@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@color/main_color"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:background="@color/main_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:id="@+id/imgchitiet"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:src="@drawable/miramen1"
+                android:scaleType="centerCrop"/>
+        </RelativeLayout>
+        <LinearLayout
+
+            android:background="@color/main_color"
+            android:padding="2dp"
+            android:layout_marginLeft="150dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/item_idchitietten"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mì ramen"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+            <TextView
+                android:id="@+id/item_soluong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="so luong : 2"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+            <TextView
+                android:id="@+id/item_tongtien"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tiền : 65330"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

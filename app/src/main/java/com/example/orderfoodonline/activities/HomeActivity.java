@@ -63,12 +63,13 @@ public class HomeActivity extends AppCompatActivity implements CategoryListener,
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Chức năng sắp ra mắt", Toast.LENGTH_SHORT).show();
             }
-        });
+        }); 
         //set click cho btn to orders
         binding.toOrders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Chức năng sắp ra mắt", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), OrderActivity.class);
+                startActivity(intent);
             }
         });
         //set click cho btn to chat
