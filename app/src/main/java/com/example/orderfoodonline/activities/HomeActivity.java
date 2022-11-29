@@ -8,12 +8,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.orderfoodonline.R;
+import com.example.orderfoodonline.Utils.Utils;
 import com.example.orderfoodonline.adapters.CategoryAdapter;
 import com.example.orderfoodonline.adapters.RamenAdapter;
 import com.example.orderfoodonline.databinding.ActivityHomeBinding;
@@ -22,19 +24,30 @@ import com.example.orderfoodonline.listener.CategoryListener;
 import com.example.orderfoodonline.listener.DetailListener;
 import com.example.orderfoodonline.models.Category;
 import com.example.orderfoodonline.models.Ramen;
+import com.example.orderfoodonline.retrofit.FoodAppApi;
+import com.example.orderfoodonline.retrofit.Retrofitinstance;
 import com.example.orderfoodonline.viewModels.HomeViewModel;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import io.paperdb.Paper;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class HomeActivity extends AppCompatActivity implements CategoryListener,DetailListener{
     HomeViewModel homeViewModel;
     ActivityHomeBinding binding;
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
+    FoodAppApi foodAppApi;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setBinding cho activity home
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
+        foodAppApi  = Retrofitinstance.getRetrofit().create(FoodAppApi.class);
         initView();
+        getToken();
         initData();
         initBottombar();
     }
@@ -163,5 +176,26 @@ public class HomeActivity extends AppCompatActivity implements CategoryListener,
         //Truyen id
         intent.putExtra("id",ramen.getId());
         startActivity(intent);
+    }
+
+    private void getToken(){
+        FirebaseMessaging.getInstance().getToken()
+                .addOnSuccessListener(new OnSuccessListener<String>() {
+                    @Override
+                    public void onSuccess(String s) {
+                        if (!TextUtils.isEmpty(s)){
+                            compositeDisposable.add(foodAppApi.updateToken(Utils.user_current.getEmail(), s)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(
+                                            addFoodModels  -> {
+                                                Log.d("token123456789", s);
+                                            },throwable -> {
+                                                Log.d("token123456789", throwable.getMessage());
+                                            }
+                                    ));
+                        }
+                    }
+                });
     }
 }

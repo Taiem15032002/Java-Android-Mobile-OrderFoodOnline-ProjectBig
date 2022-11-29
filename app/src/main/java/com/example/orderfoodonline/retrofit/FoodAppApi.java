@@ -44,7 +44,8 @@ public interface FoodAppApi {
             @Field("email") String email,
             @Field("pass") String pass,
             @Field("username") String username,
-            @Field("mobile") String mobile
+            @Field("mobile") String mobile,
+            @Field("uid") String uid
     );
     //Api dang nhap
     @POST("dangnhap.php")
@@ -92,4 +93,12 @@ public interface FoodAppApi {
     @Multipart
     @POST("uploadimg.php")
     Call<AddFoodModels> uploadFile(@Part MultipartBody.Part file);
+
+    //api them san pham
+    @POST("updatetoken.php")
+    @FormUrlEncoded
+    Observable<AddFoodModels> updateToken(
+            @Field("email") String email,
+            @Field("token") String token
+    );
 }

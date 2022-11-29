@@ -2,7 +2,21 @@ package com.example.orderfoodonline.models;
 
 public class User {
     private int id;
-    private String email, pass, username, mobile;
+    private String email;
+    private String pass;
+    private String username;
+    private String mobile;
+    private String uid;
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+
 
     public String getMobile() {
         return mobile;

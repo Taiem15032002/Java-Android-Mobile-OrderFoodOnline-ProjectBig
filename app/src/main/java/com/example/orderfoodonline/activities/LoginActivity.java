@@ -1,5 +1,6 @@
 package com.example.orderfoodonline.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
@@ -25,6 +26,11 @@ import com.example.orderfoodonline.models.User;
 import com.example.orderfoodonline.models.UserModels;
 import com.example.orderfoodonline.retrofit.FoodAppApi;
 import com.example.orderfoodonline.retrofit.Retrofitinstance;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import io.paperdb.Paper;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -38,12 +44,17 @@ public class LoginActivity extends AppCompatActivity {
     public TextView register;
     public TextView forgotpass;
     public TextView btnLogin;
+
     public boolean islogin = false;
+
     RadioGroup radioGroup;
     RadioButton rd1, rd2, rd3;
     FoodAppApi foodAppApi;
+
     CompositeDisposable compositeDisposable = new CompositeDisposable();
-    boolean isLogin = false;
+
+    FirebaseAuth firebaseAuth;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +95,6 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Vui lòng nhập mật khẩu", Toast.LENGTH_SHORT).show();
                 } else {
                     //luu username vao paper
-
                     Paper.book().write("email", strusername);
                     Paper.book().write("pass", strPass);
                     if (rd1.isChecked() != true && rd2.isChecked() != true && rd3.isChecked() != true){
@@ -100,7 +110,23 @@ public class LoginActivity extends AppCompatActivity {
                         builder.show();
                     }
                     else if (rd1.isChecked() == true){
-                        dangnhap(strusername, strPass);
+                        //push uid to firebass
+                        if (user != null){
+                            //user da dang nhap firebase
+                            dangnhap(strusername, strPass);
+                        }else{
+                            //user da logout
+                            firebaseAuth.signInWithEmailAndPassword(strusername, strPass)
+                                    .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                            if(task.isSuccessful()){
+                                                dangnhap(strusername, strPass);
+                                            }
+                                        }
+                                    });
+                        }
+
                     }else if(rd2.isChecked() == true){
                         Intent intent = new Intent(getApplicationContext(), HomeManagerActivity.class);
                         startActivity(intent);
@@ -136,8 +162,6 @@ public class LoginActivity extends AppCompatActivity {
                                 Paper.book().read("email", userModels.getResult().get(0));
                                 Paper.book().write("sdt",Utils.user_current.getMobile());
                                 Paper.book().write("username",Utils.user_current.getUsername());
-                                Paper.book().write("iduser",Utils.user_current.getId());
-                                Paper.book().write("iduser1",Utils.user_current.getId());
                                 Toast.makeText(getApplicationContext(), "Đăng nhập thành công !" + Utils.user_current.getEmail(), Toast.LENGTH_SHORT).show();
 //                                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
 //                                startActivity(intent);
@@ -173,6 +197,9 @@ public class LoginActivity extends AppCompatActivity {
         rd1 = findViewById(R.id.rduser);
         rd2 = findViewById(R.id.rdnhahang);
         rd3 = findViewById(R.id.rdshipper);
+        //Fire base
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
 
         //doc du lieu tu paper
         if (Paper.book().read("email") != null && Paper.book().read("pass") != null) {
