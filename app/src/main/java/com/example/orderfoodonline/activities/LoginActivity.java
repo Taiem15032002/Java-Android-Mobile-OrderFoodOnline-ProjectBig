@@ -113,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
                         //push uid to firebass
                         if (user != null){
                             //user da dang nhap firebase
-                            dangnhap(strusername, strPass);
+                            dangnhap(strusername, strPass,0);
                         }else{
                             //user da logout
                             firebaseAuth.signInWithEmailAndPassword(strusername, strPass)
@@ -121,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<AuthResult> task) {
                                             if(task.isSuccessful()){
-                                                dangnhap(strusername, strPass);
+                                                dangnhap(strusername, strPass,0);
                                             }
                                         }
                                     });
@@ -147,8 +147,8 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void dangnhap(String strusername, String strPass) {
-        compositeDisposable.add(foodAppApi.dangNhap(strusername, strPass)
+    private void dangnhap(String strusername, String strPass, int author) {
+        compositeDisposable.add(foodAppApi.dangNhap(strusername, strPass, author)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -166,7 +166,7 @@ public class LoginActivity extends AppCompatActivity {
 //                                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
 //                                startActivity(intent);
 //                                finish();
-                                onLoginclick(Utils.user_current);
+                                onLoginclick();
                                 Log.d("loginkaka",Paper.book().read("cart"));
                             }else{
                                 Toast.makeText(getApplicationContext(), "Email hoặc Password không đúng !", Toast.LENGTH_SHORT).show();
@@ -176,10 +176,8 @@ public class LoginActivity extends AppCompatActivity {
                         }
                 ));
     }
-    public void onLoginclick(User user) {
+    public void onLoginclick() {
         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-        //Truyen id
-        intent.putExtra("id",user.getId());
         startActivity(intent);
         finish();
     }
@@ -210,7 +208,7 @@ public class LoginActivity extends AppCompatActivity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            dangnhap(Paper.book().read("email"), Paper.book().read("pass"));
+                            dangnhap(Paper.book().read("email"), Paper.book().read("pass"),0);
                         }
                     }, 1000);
                 }

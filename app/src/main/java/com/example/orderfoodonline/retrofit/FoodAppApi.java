@@ -53,7 +53,8 @@ public interface FoodAppApi {
     @FormUrlEncoded
     Observable<UserModels> dangNhap(
             @Field("email") String email,
-            @Field("pass") String pass
+            @Field("pass") String pass,
+            @Field("author") int author
     );
     //api detail food
     @POST("fooddetail.php")

@@ -121,6 +121,10 @@ public class RegisterActivity extends AppCompatActivity {
                                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                                         startActivity(intent);
                             } else {
+                                Utils.user_current.setEmail(str_email);
+                                Utils.user_current.setPass(str_pass);
+                                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                startActivity(intent);
                                 Toast.makeText(getApplicationContext(), userModels.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         },

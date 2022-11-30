@@ -13,7 +13,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RamenRepository {
-    private FoodAppApi foodAppApi;
+    private final FoodAppApi foodAppApi;
 
     public RamenRepository() {
         foodAppApi = Retrofitinstance.getRetrofit().create(FoodAppApi.class);

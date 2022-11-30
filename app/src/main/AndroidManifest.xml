@@ -16,21 +16,21 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ShippertoShipActivity"
+            android:name=".activities.ShippertoShipActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Shipper_Activity"
+            android:name=".activities.Shipper_Activity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".OrderAdminActivity"
+            android:name=".activities.OrderAdminActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

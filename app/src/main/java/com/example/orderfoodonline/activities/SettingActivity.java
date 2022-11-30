@@ -36,22 +36,22 @@ public class SettingActivity extends AppCompatActivity {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Paper.book().read("cart") == null){
+//                if (Paper.book().read("cart") == null){
+//                    Paper.book().delete("username");
+//                    Paper.book().delete("sdt");
+//                    FirebaseAuth.getInstance().signOut();
+//                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+//                    startActivity(intent);
+//                    finish();
+//                }else{
+//                    removeCart(Paper.book().read("removecart"));
                     Paper.book().delete("username");
                     Paper.book().delete("sdt");
                     FirebaseAuth.getInstance().signOut();
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
                     finish();
-                }else{
-                    removeCart(Paper.book().read("removecart"));
-                    Paper.book().delete("username");
-                    Paper.book().delete("sdt");
-                    FirebaseAuth.getInstance().signOut();
-                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
+//                }
             }
         });
     }

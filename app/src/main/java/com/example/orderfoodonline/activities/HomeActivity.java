@@ -181,7 +181,7 @@ public class HomeActivity extends AppCompatActivity implements CategoryListener,
     public void onMenuClick(Ramen ramen){
         Intent intent = new Intent(getApplicationContext(), DealtailFoodActivity.class);
         //Truyen id
-        intent.putExtra("id",ramen.getId());
+        intent.putExtra("idramen",ramen.getId());
         startActivity(intent);
     }
 
@@ -204,17 +204,17 @@ public class HomeActivity extends AppCompatActivity implements CategoryListener,
                         }
                     }
                 });
-        compositeDisposable.add(foodAppApi.getToken(1)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        userModels -> {
-                            if (userModels.isSuccess()){
-                                Utils.ID_RECEIVE = String.valueOf(userModels.getResult().get(0).getId());
-                            }
-                        },throwable -> {
-
-                        }
-                ));
+//        compositeDisposable.add(foodAppApi.getToken(1)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(
+//                        userModels -> {
+//                            if (userModels.isSuccess()){
+//                                Utils.ID_RECEIVE = String.valueOf(userModels.getResult().get(0).getId());
+//                            }
+//                        },throwable -> {
+//
+//                        }
+//                ));
     }
 }

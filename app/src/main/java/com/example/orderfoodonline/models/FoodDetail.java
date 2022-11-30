@@ -1,7 +1,7 @@
 package com.example.orderfoodonline.models;
 
 public class FoodDetail {
-    int id, price;
+    int id , price;
     String food_name,category,decripstion,foodThumb;
 
     public int getId() {

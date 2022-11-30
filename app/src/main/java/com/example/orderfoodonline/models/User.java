@@ -7,6 +7,15 @@ public class User {
     private String username;
     private String mobile;
     private String uid;
+    private int author;
+
+    public int getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(int author) {
+        this.author = author;
+    }
 
     public String getUid() {
         return uid;

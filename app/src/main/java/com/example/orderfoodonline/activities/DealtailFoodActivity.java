@@ -16,10 +16,14 @@ import com.example.orderfoodonline.R;
 import com.example.orderfoodonline.Utils.Utils;
 import com.example.orderfoodonline.databinding.ActivityDealtailFoodBinding;
 import com.example.orderfoodonline.models.Cart;
+import com.example.orderfoodonline.models.CategoryModels;
 import com.example.orderfoodonline.models.FoodDetail;
+import com.example.orderfoodonline.models.RamenModels;
+import com.example.orderfoodonline.models.UserModels;
 import com.example.orderfoodonline.viewModels.FoodDetailViewModel;
 import com.example.orderfoodonline.viewModels.HomeViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.paperdb.Paper;
@@ -29,6 +33,7 @@ public class DealtailFoodActivity extends AppCompatActivity {
     ActivityDealtailFoodBinding activityDealtailFoodBinding;
     FoodDetail foodDetail;
     int amount = 1;
+    UserModels ramenModels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,7 @@ public class DealtailFoodActivity extends AppCompatActivity {
         activityDealtailFoodBinding = DataBindingUtil.setContentView(this, R.layout.activity_dealtail_food);
         //Khoi tao Paper
         Paper.init(this);
-        int id = getIntent().getIntExtra("id", 1);
+        int id = getIntent().getIntExtra("idramen", 0);
         initData(id);
         initView();
         Event();
@@ -48,15 +53,15 @@ public class DealtailFoodActivity extends AppCompatActivity {
         //Doc du lieu da luu vao paper
         if(Paper.book().read("cart") != null){
             List<Cart> list = Paper.book().read("cart");
-            Utils.cartList = list;
+            Utils.cartList =  list;
         }
-
-
         if (Utils.cartList.size() > 0){
             for (int i = 0; i < Utils.cartList.size(); i++){
-                if (Utils.cartList.get(i).getFoodDetail().getId() == id){
-                    activityDealtailFoodBinding.tvMany.setText(Utils.cartList.get(i).getAmount() + "");
-                }
+//                if (Utils.cartList.get(i).getFoodDetail().getId() == id){
+//                    activityDealtailFoodBinding.tvMany.setText(Utils.cartList.get(i).getAmount() + "");
+//                }
+
+                Log.d("log", Utils.cartList.get(i).getFoodDetail()+"ku: " + "kak: "+id + "kiki: "+Utils.cartList.size());
             }
         }else{
             activityDealtailFoodBinding.tvMany.setText(amount+"");
@@ -138,7 +143,8 @@ public class DealtailFoodActivity extends AppCompatActivity {
         viewModel.foodDetailModelsMutableLiveData(id).observe(this,foodDetailModels -> {
             if (foodDetailModels.isSuccess()){
                 foodDetail = foodDetailModels.getResult().get(0);
-                Log.d("test",foodDetailModels.getResult().get(0).getFood_name());
+                Log.d("test",String.valueOf(foodDetailModels.getResult().get(0).getId()));
+                Paper.book().write("idra", foodDetailModels.getResult().get(0).getId());
                 activityDealtailFoodBinding.tvFoodDetail.setText(foodDetail.getFood_name());
                 activityDealtailFoodBinding.tvFoodPrice.setText("Giá tiền: "+foodDetail.getPrice()+"VND");
                 activityDealtailFoodBinding.textDesciptions.setText(foodDetail.getDecripstion());
