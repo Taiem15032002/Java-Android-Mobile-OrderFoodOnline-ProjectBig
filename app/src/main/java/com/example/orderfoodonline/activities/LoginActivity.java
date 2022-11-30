@@ -162,18 +162,17 @@ public class LoginActivity extends AppCompatActivity {
                                 Paper.book().read("email", userModels.getResult().get(0));
                                 Paper.book().write("sdt",Utils.user_current.getMobile());
                                 Paper.book().write("username",Utils.user_current.getUsername());
-                                Toast.makeText(getApplicationContext(), "Đăng nhập thành công !" + Utils.user_current.getEmail(), Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getApplicationContext(), "Đăng nhập thành công !" + Paper.book().read("cart"), Toast.LENGTH_SHORT).show();
 //                                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
 //                                startActivity(intent);
 //                                finish();
                                 onLoginclick(Utils.user_current);
-                                Log.d("login","login" +userModels.getMessage()+"sdt: "+Utils.user_current.getId() +" dada: "+Paper.book().read("iduser1"));
+                                Log.d("loginkaka",Paper.book().read("cart"));
                             }else{
                                 Toast.makeText(getApplicationContext(), "Email hoặc Password không đúng !", Toast.LENGTH_SHORT).show();
                             }
                         },
                         throwable -> {
-                            Toast.makeText(getApplicationContext(), "Hỏng chương trình", Toast.LENGTH_SHORT).show();
                         }
                 ));
     }

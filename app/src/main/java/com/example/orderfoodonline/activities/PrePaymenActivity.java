@@ -1,5 +1,7 @@
 package com.example.orderfoodonline.activities;
 
+import static com.example.orderfoodonline.adapters.CartAdapter.removeCart;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
@@ -142,13 +144,14 @@ public class PrePaymenActivity extends AppCompatActivity {
                                         builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-                                                dialog.dismiss();
+                                                Intent intent = new Intent(getApplicationContext(), ShippingActivity.class);
+                                                startActivity(intent);
+                                                finish();
+                                                removeCart(Paper.book().read("removecart"));
                                             }
                                         });
                                         builder.show();
-                                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                                        startActivity(intent);
-                                        finish();
+
                                     }, throwable -> {
 
                                         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(v.getRootView().getContext());
@@ -157,13 +160,13 @@ public class PrePaymenActivity extends AppCompatActivity {
                                         builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-                                                dialog.dismiss();
+                                                Intent intent = new Intent(getApplicationContext(), ShippingActivity.class);
+                                                startActivity(intent);
+                                                finish();
+                                                removeCart(Paper.book().read("removecart"));
                                             }
                                         });
                                         builder.show();
-                                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                                        startActivity(intent);
-                                        finish();
                                     }
                             ));
                 }

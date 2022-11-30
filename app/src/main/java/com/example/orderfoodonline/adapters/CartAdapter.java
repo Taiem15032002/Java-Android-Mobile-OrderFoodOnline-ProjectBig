@@ -51,6 +51,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             Glide.with(context).load(Utils.hinh+cart.getFoodDetail().getFoodThumb()).into(holder.binding.imageCart);
         }
 
+        //Paper remove cart on logout
+        Paper.book().write("removecart", holder.getAdapterPosition());
+
         holder.binding.tvIdFoodCart.setText("Mã đơn hàng: "+cart.getFoodDetail().getId());
         holder.binding.tvPriceFood.setText("Giá: "+cart.getFoodDetail().getPrice() +"VND");
         holder.binding.btnadd.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +100,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         });
     }
 
-    private void removeCart(int adapterPosition) {
+    public static void removeCart(int adapterPosition) {
         Utils.cartList.remove(adapterPosition);
         Paper.book().write("cart", Utils.cartList);
     }

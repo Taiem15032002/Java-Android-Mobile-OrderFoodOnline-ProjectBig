@@ -1,9 +1,12 @@
 package com.example.orderfoodonline.activities;
 
+import static com.example.orderfoodonline.adapters.CartAdapter.removeCart;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -33,14 +36,22 @@ public class SettingActivity extends AppCompatActivity {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Paper.book().delete("username");
-                Paper.book().delete("sdt");
-                List<Cart> cartList = Paper.book().read("cart");
-                cartList.clear();
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-                finish();
+                if (Paper.book().read("cart") == null){
+                    Paper.book().delete("username");
+                    Paper.book().delete("sdt");
+                    FirebaseAuth.getInstance().signOut();
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    removeCart(Paper.book().read("removecart"));
+                    Paper.book().delete("username");
+                    Paper.book().delete("sdt");
+                    FirebaseAuth.getInstance().signOut();
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
     }

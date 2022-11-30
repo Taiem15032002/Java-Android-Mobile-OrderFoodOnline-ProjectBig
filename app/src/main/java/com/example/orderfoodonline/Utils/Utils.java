@@ -13,4 +13,10 @@ public class Utils {
     public static final String BASE_URL = "https://japanfoodapp.000webhostapp.com/";
     public static List<Cart> cartList = new ArrayList<>();
     public static User user_current = new User();
+    public static String ID_RECEIVE ;
+    public static final String ID_SEND = "idsend";
+    public static final String ID_RECEIVED = "idreceived";
+    public static final String MESS = "message";
+    public static final String DATE_TIME = "datetime";
+    public static final String PATH_CHAT = "chat";
 }

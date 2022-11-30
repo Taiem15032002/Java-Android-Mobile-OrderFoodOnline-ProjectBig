@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.util.Util;
 import com.example.orderfoodonline.R;
 import com.example.orderfoodonline.Utils.Utils;
 import com.example.orderfoodonline.adapters.CategoryAdapter;
@@ -46,6 +47,7 @@ public class HomeActivity extends AppCompatActivity implements CategoryListener,
         //setBinding cho activity home
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         foodAppApi  = Retrofitinstance.getRetrofit().create(FoodAppApi.class);
+        Paper.init(this);
         initView();
         getToken();
         initData();
@@ -55,13 +57,13 @@ public class HomeActivity extends AppCompatActivity implements CategoryListener,
     private void initBottombar() {
         //-------------------------------//
         //set click cho btn to Cart
-        binding.toCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CartActivity.class);
-                startActivity(intent);
-            }
-        });
+            binding.toCart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+                    startActivity(intent);
+                }
+            });
         //set click cho btn to Setting
         binding.toSetting.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,19 +119,20 @@ public class HomeActivity extends AppCompatActivity implements CategoryListener,
             }
         });
         //Mi ramen setadapter
-        homeViewModel.ramenModelsMutableLiveData(1).observe(this, ramenModels -> {
-           if (ramenModels.isSuccess()){
-               RamenAdapter adapter = new RamenAdapter(ramenModels.getResult(),this);
-               binding.rvMinhat.setAdapter(adapter);
-           }
-        });
-//        //Mi udon setadapter
-//        homeViewModel.ramenModelsMutableLiveData(2).observe(this, ramenModels -> {
-//            if (ramenModels.isSuccess()){
-//                RamenAdapter adapter = new RamenAdapter(ramenModels.getResult(),this);
-//                binding.rvMiudon.setAdapter(adapter);
-//            }
+//        homeViewModel.ramenModelsMutableLiveData(0).observe(this, ramenModels -> {
+//           if (ramenModels.isSuccess()){
+//               RamenAdapter adapter = new RamenAdapter(ramenModels.getResult(),this);
+//               binding.rvMinhat.setAdapter(adapter);
+//           }
 //        });
+//        //Mi udon setadapter
+        homeViewModel.ramenallModelsMutableLiveData(0).observe(this, ramenModels -> {
+            if (ramenModels.isSuccess()){
+                RamenAdapter adapter = new RamenAdapter(ramenModels.getResult(),this);
+                binding.rvMinhat.setAdapter(adapter);
+                binding.tvMiNhat.setText("Tất cả");
+            }
+        });
 //        //Mi soba setadapter
 //        homeViewModel.ramenModelsMutableLiveData(3).observe(this, ramenModels -> {
 //            if (ramenModels.isSuccess()){
@@ -155,19 +158,23 @@ public class HomeActivity extends AppCompatActivity implements CategoryListener,
 
     @Override
     public void onCategoryClick(Category category) {
-//        Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
-// Truyen id
-//        intent.putExtra("idcate",category.getId());
-//        intent.putExtra("namecate",category.getCategory());
-//        startActivity(intent);
-        //Mi setadapter
-        homeViewModel.ramenModelsMutableLiveData(category.getId()).observe(this, ramenModels -> {
-            if (ramenModels.isSuccess()){
-                binding.tvMiNhat.setText("Mì "+category.getCategory());
-                RamenAdapter adapter = new RamenAdapter(ramenModels.getResult(),this);
-                binding.rvMinhat.setAdapter(adapter);
-            }
-        });
+        if (category.getId() != 0) {
+            homeViewModel.ramenModelsMutableLiveData(category.getId()).observe(this, ramenModels -> {
+                if (ramenModels.isSuccess()) {
+                    binding.tvMiNhat.setText("Mì " + category.getCategory());
+                    RamenAdapter adapter = new RamenAdapter(ramenModels.getResult(), this);
+                    binding.rvMinhat.setAdapter(adapter);
+                }
+            });
+        }else{
+            homeViewModel.ramenallModelsMutableLiveData(0).observe(this, ramenModels -> {
+                if (ramenModels.isSuccess()) {
+                    binding.tvMiNhat.setText("Tất cả");
+                    RamenAdapter adapter = new RamenAdapter(ramenModels.getResult(), this);
+                    binding.rvMinhat.setAdapter(adapter);
+                }
+            });
+        }
 
     }
     @Override
@@ -197,5 +204,17 @@ public class HomeActivity extends AppCompatActivity implements CategoryListener,
                         }
                     }
                 });
+        compositeDisposable.add(foodAppApi.getToken(1)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        userModels -> {
+                            if (userModels.isSuccess()){
+                                Utils.ID_RECEIVE = String.valueOf(userModels.getResult().get(0).getId());
+                            }
+                        },throwable -> {
+
+                        }
+                ));
     }
 }

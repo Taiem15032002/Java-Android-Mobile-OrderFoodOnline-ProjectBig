@@ -29,7 +29,8 @@ public interface FoodAppApi {
     //sanpham moi
     @POST("sanphammoi.php")
     @FormUrlEncoded
-    Observable<RamenModels> getSPmoi(
+    Call<RamenModels> getSPmoi(
+            @Field("idcate") int idcate
     );
     //Lay du lieu tu list more food
     @POST("food_category.php")
@@ -100,5 +101,12 @@ public interface FoodAppApi {
     Observable<AddFoodModels> updateToken(
             @Field("email") String email,
             @Field("token") String token
+    );
+
+
+    @POST("gettoken.php")
+    @FormUrlEncoded
+    Observable<UserModels> getToken(
+            @Field("status") int status
     );
 }
