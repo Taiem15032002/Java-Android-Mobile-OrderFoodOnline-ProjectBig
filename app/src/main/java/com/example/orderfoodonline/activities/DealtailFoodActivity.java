@@ -34,6 +34,7 @@ public class DealtailFoodActivity extends AppCompatActivity {
     FoodDetail foodDetail;
     int amount = 1;
     UserModels ramenModels;
+    List<Cart> cartList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class DealtailFoodActivity extends AppCompatActivity {
         activityDealtailFoodBinding = DataBindingUtil.setContentView(this, R.layout.activity_dealtail_food);
         //Khoi tao Paper
         Paper.init(this);
-        int id = getIntent().getIntExtra("idramen", 0);
+        int id = getIntent().getIntExtra("idramen", 1);
         initData(id);
         initView();
         Event();
@@ -53,15 +54,15 @@ public class DealtailFoodActivity extends AppCompatActivity {
         //Doc du lieu da luu vao paper
         if(Paper.book().read("cart") != null){
             List<Cart> list = Paper.book().read("cart");
-            Utils.cartList =  list;
+            cartList =  list;
         }
-        if (Utils.cartList.size() > 0){
-            for (int i = 0; i < Utils.cartList.size(); i++){
-//                if (Utils.cartList.get(i).getFoodDetail().getId() == id){
-//                    activityDealtailFoodBinding.tvMany.setText(Utils.cartList.get(i).getAmount() + "");
-//                }
+        if (cartList.size() > 0){
+            for (int i = 0; i < cartList.size(); i++){
+                if (cartList.get(i).getFoodDetail().getId() == id){
+                    activityDealtailFoodBinding.tvMany.setText(cartList.get(i).getAmount() + "");
+                }
 
-                Log.d("log", Utils.cartList.get(i).getFoodDetail()+"ku: " + "kak: "+id + "kiki: "+Utils.cartList.size());
+                Log.d("log", cartList.get(i).getFoodDetail()+"ku: " + "kak: "+id + "kiki: "+Utils.cartList.size());
             }
         }else{
             activityDealtailFoodBinding.tvMany.setText(amount+"");
@@ -95,9 +96,9 @@ public class DealtailFoodActivity extends AppCompatActivity {
     private void addtoCart(int amount){
         boolean checkExit = false;
         int n = 0;
-        if (Utils.cartList.size()>0){
+        if (cartList.size()>0){
             for (int i = 0; i < Utils.cartList.size(); i++){
-                if (Utils.cartList.get(i).getFoodDetail().getId() == foodDetail.getId()){
+                if (cartList.get(i).getFoodDetail().getId() == foodDetail.getId()){
                     checkExit = true;
                     n=i;
                     break;
@@ -105,16 +106,16 @@ public class DealtailFoodActivity extends AppCompatActivity {
             }
         }
         if (checkExit){
-            Utils.cartList.get(n).setAmount(amount);
+            cartList.get(n).setAmount(amount);
         }else{
             Cart cart = new Cart();
             cart.setFoodDetail(foodDetail);
             cart.setAmount(amount);
-            Utils.cartList.add(cart);
+            cartList.add(cart);
         }
         Toast.makeText(getApplicationContext(), "Add to cart", Toast.LENGTH_LONG).show();
 //        //Luu vao paper
-        Paper.book().write("cart", Utils.cartList);
+        Paper.book().write("cart", cartList);
     }
 
     //Test
@@ -153,6 +154,72 @@ public class DealtailFoodActivity extends AppCompatActivity {
                 }else{
                     Glide.with(this).load(Utils.hinh+foodDetail.getFoodThumb()).into(activityDealtailFoodBinding.imagedetail);
                 }
+//
+//
+//                //Doc du lieu da luu vao paper
+//                if(Paper.book().read("cart") != null){
+//                    List<Cart> list = Paper.book().read("cart");
+//                    Utils.cartList =  list;
+//                }
+//                if (Utils.cartList.size() > 0){
+//                    for (int i = 0; i < Utils.cartList.size(); i++){
+//                if (foodDetailModels.getResult().get(i).getId() == id){
+//                    activityDealtailFoodBinding.tvMany.setText(Utils.cartList.get(i).getAmount() + "");
+//                }
+//
+//                        Log.d("log", foodDetailModels.getResult().get(i).getId()+"ku: " + "kak: "+id + "kiki: "+Utils.cartList.size());
+//                    }
+//                }else{
+//                    activityDealtailFoodBinding.tvMany.setText(amount+"");
+//                }
+//
+//                ///////////////
+//                activityDealtailFoodBinding.btnadd.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        amount = Integer.parseInt(activityDealtailFoodBinding.tvMany.getText().toString()) + 1;
+//                        activityDealtailFoodBinding.tvMany.setText(String.valueOf(amount));
+//                    }
+//                });
+//                activityDealtailFoodBinding.btnminus.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        if (Integer.parseInt(activityDealtailFoodBinding.tvMany.getText().toString()) > 1){
+//                            amount = Integer.parseInt(activityDealtailFoodBinding.tvMany.getText().toString()) - 1;
+//                            activityDealtailFoodBinding.tvMany.setText(String.valueOf(amount));
+//                        }
+//                    }
+//                });
+//                activityDealtailFoodBinding.btnTocart.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        boolean checkExit = false;
+//                        int n = 0;
+//                        if (Utils.cartList.size()>0){
+//                            for (int i = 0; i < Utils.cartList.size(); i++){
+//                                if (foodDetailModels.getResult().get(i).getId() == id){
+//                                    checkExit = true;
+//                                    n=i;
+//                                    break;
+//                                }
+//                            }
+//                        }
+//                        if (checkExit){
+//                            Utils.cartList.get(n).setAmount(amount);
+//                        }else{
+//                            Cart cart = new Cart();
+//                            cart.setFoodDetail(foodDetail);
+//                            cart.setAmount(amount);
+//                            Utils.cartList.add(cart);
+//                        }
+//                        Toast.makeText(getApplicationContext(), "Add to cart", Toast.LENGTH_LONG).show();
+////        //Luu vao paper
+//                        Paper.book().write("cart", Utils.cartList);
+//                    }
+//                });
+//                ////////////
+
+
             }
         });
     }

@@ -14,7 +14,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DetailFoodRepository {
-    private final FoodAppApi foodAppApi;
+    private FoodAppApi foodAppApi;
 
     public DetailFoodRepository() {
         foodAppApi = Retrofitinstance.getRetrofit().create(FoodAppApi.class);

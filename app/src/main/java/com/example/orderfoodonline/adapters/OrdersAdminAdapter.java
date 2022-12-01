@@ -7,34 +7,34 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.orderfoodonline.R;
+import com.example.orderfoodonline.listener.ItemClickLis;
 import com.example.orderfoodonline.models.DonHang;
 
 import java.util.List;
 
-public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder> {
+public class OrdersAdminAdapter extends RecyclerView.Adapter<OrdersAdminAdapter.MyViewHolder> {
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
     List<DonHang> listDonhang;
     Context context;
 
-    public OrderAdapter( Context context,List<DonHang> listDonhang) {
+    public OrdersAdminAdapter( Context context,List<DonHang> listDonhang) {
         this.listDonhang = listDonhang;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_orders, parent, false);
-        return new MyViewHolder(view);
+    public OrdersAdminAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_orders_admin, parent, false);
+        return new OrdersAdminAdapter.MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull OrdersAdminAdapter.MyViewHolder holder, int position) {
         DonHang donHang = listDonhang.get(position);
         holder.txtiddonhang.setText("Mã đơn hàng: "+donHang.getId() + " ");
         holder.txtidtongtien.setText("Tổng tiên: "+donHang.getTongtien()+" ");
@@ -45,7 +45,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                 false
         );
         manager.setInitialPrefetchItemCount(donHang.getItem().size());
-        
+
         //adapter ch tiet
         ChitietdonhangAdapter adapter = new ChitietdonhangAdapter(context,donHang.getItem());
         holder.rcchitiet.setLayoutManager(manager);
@@ -83,9 +83,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
     }
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView txtiddonhang, txtidtongtien, txtidtrangthai;
         RecyclerView rcchitiet;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             txtiddonhang = itemView.findViewById(R.id.iddonhang);
@@ -93,5 +94,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
             txtidtrangthai = itemView.findViewById(R.id.idtinhtrang);
             rcchitiet = itemView.findViewById(R.id.rcvdonhang);
         }
+
     }
 }

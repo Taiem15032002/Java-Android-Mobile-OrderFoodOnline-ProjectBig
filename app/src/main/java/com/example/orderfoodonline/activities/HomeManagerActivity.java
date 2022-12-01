@@ -60,6 +60,20 @@ ActivityHomeManagerBinding binding;
                 startActivity(intent);
             }
         });
+        toOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), OrderAdminActivity.class);
+                startActivity(intent);
+            }
+        });
+        toSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SettingAdminActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initControl() {

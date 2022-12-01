@@ -50,12 +50,11 @@ public class LoginActivity extends AppCompatActivity {
     RadioGroup radioGroup;
     RadioButton rd1, rd2, rd3;
     FoodAppApi foodAppApi;
-
+    User user_curent = new User();
     CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,6 +140,18 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         });
                         builder.show();
+                    }else{
+                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(v.getRootView().getContext());
+                        builder.setTitle("Thông báo");
+                        builder.setMessage("Sai tên đăng nhập hoặc mật khẩu!");
+                        builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        builder.show();
+                        Log.d("thu", Paper.book().read("email"));
                     }
                 }
             }

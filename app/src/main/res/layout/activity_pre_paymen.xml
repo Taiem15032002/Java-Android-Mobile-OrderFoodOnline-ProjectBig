@@ -139,14 +139,14 @@
                         android:text="Thanh toán toàn bộ"/>
                 </RadioGroup>
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_momo"
+                    android:id="@+id/btn_zalopay"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
-                    android:backgroundTint="#b0006d"
+                    android:backgroundTint="#008FE5"
                     android:background="@drawable/btn_checkout"
                     android:layout_margin="@dimen/_10sdp"
                     android:gravity="center"
-                    android:text="THANH TOÁN BẰNg MOMO"
+                    android:text="THANH TOÁN BẰNg ZALOPAY"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold"
@@ -165,7 +165,7 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@id/btn_momo"
+                    app:layout_constraintTop_toBottomOf="@id/btn_zalopay"
                     app:layout_constraintStart_toStartOf="parent">
                 </androidx.appcompat.widget.AppCompatButton>
 <!--                <androidx.appcompat.widget.AppCompatButton-->

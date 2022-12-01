@@ -111,7 +111,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             //neu amount = 1 thi bo phan tu adapter tai vi tri do ra ngoai
                     Utils.cartList.remove(adapterPosition);
         }else{
-            Utils.cartList.get(adapterPosition).setAmount(Utils.cartList.get(adapterPosition).getAmount() - 1);
+            Utils.cartList.get(adapterPosition).setAmount(cartList.get(adapterPosition).getAmount() - 1);
         }
 
         //ghi lai du lieu vao paper
@@ -120,7 +120,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
     private void addtoCart(int adapterPosition) {
         //Lay vi tri tu click set soluong cho cart
-        Utils.cartList.get(adapterPosition).setAmount(Utils.cartList.get(adapterPosition).getAmount() + 1);
+        Utils.cartList.get(adapterPosition).setAmount(cartList.get(adapterPosition).getAmount() + 1);
         //ghi lai du lieu vao paper
         Paper.book().write("cart", Utils.cartList);
     }

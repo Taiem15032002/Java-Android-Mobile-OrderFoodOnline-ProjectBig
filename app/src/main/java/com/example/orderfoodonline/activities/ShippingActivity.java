@@ -22,6 +22,8 @@ public class ShippingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shipping);
+        initView();
+        initControl();
     }
     private void initView() {
         foodAppApi = Retrofitinstance.getRetrofit().create(FoodAppApi.class);
@@ -31,7 +33,8 @@ public class ShippingActivity extends AppCompatActivity {
         btnDanhan = findViewById(R.id.btndathang);
     }
     private void initControl(){
-        tv_tratienmat.setText("Trả tiền mặt: "+getIntent().getIntExtra("tongtien", 0) + " VND");
+        int giatien = getIntent().getIntExtra("giatien",0);
+        tv_tratienmat.setText("Trả tiền mặt: " + String.valueOf(giatien) +"VND");
         tvsdt.setText("SDT: "+ Paper.book().read("sdt"));
     }
 }

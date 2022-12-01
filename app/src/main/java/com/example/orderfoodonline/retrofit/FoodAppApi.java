@@ -5,6 +5,7 @@ import com.example.orderfoodonline.models.CategoryModels;
 import com.example.orderfoodonline.models.DonHangModels;
 import com.example.orderfoodonline.models.FoodDetailModels;
 import com.example.orderfoodonline.models.RamenModels;
+import com.example.orderfoodonline.models.ThongKeModels;
 import com.example.orderfoodonline.models.UserModels;
 
 import io.reactivex.rxjava3.core.Observable;
@@ -103,6 +104,13 @@ public interface FoodAppApi {
             @Field("email") String email,
             @Field("token") String token
     );
+    //api them san pham
+    @POST("updatepay.php")
+    @FormUrlEncoded
+    Observable<AddFoodModels> updateZalopay(
+            @Field("email") String email,
+            @Field("token") String token
+    );
 
 
     @POST("gettoken.php")
@@ -110,4 +118,22 @@ public interface FoodAppApi {
     Observable<UserModels> getToken(
             @Field("status") int status
     );
+
+    //xem full don hang
+    @POST("getFulldonhang.php")
+    @FormUrlEncoded
+    Observable<DonHangModels> getFullDonHang(
+            @Field("trangthai") int trangthai
+    );
+
+    //update tinh trang don hang
+    @POST("updatetinhtrang.php")
+    @FormUrlEncoded
+    Observable<DonHangModels> updatetinhtrang(
+            @Field("id") int id,
+            @Field("trangthai") int trangthai
+    );
+    //Thong ke
+    @GET("thongke.php")
+    Observable<ThongKeModels> getThongke();
 }

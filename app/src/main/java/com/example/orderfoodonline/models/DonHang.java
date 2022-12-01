@@ -3,7 +3,18 @@ package com.example.orderfoodonline.models;
 import java.util.List;
 
 public class DonHang {
-    int id, soluong;
+    int id;
+    int soluong;
+
+    public int getTrangthai() {
+        return trangthai;
+    }
+
+    public void setTrangthai(int trangthai) {
+        this.trangthai = trangthai;
+    }
+
+    int trangthai;
     String emailuser, diachi, mobile,tongtien,username;
     List<Item> item;
 
